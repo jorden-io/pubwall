@@ -14,6 +14,7 @@ export default function Home() {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(body),
+      referrerPolicy: "unsafe-url",
     });
   };
   useEffect(() => {

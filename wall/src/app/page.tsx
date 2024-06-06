@@ -51,8 +51,8 @@ export default function Home() {
         }}
       >
         {state.map((e: any) => (
-          <div>
-          <p style={{padding: "10px", fontWeight: "150"}}>{e!.mid!} - {e!.time[5]}{e!.time[6]} / {e!.time[8]}{e!.time[9]} - {e!.data!}</p>
+          <div key={e.mid}>
+          <p key={e!.mid!} style={{padding: "10px", fontWeight: "150"}}>{e!.mid!} - {e!.time[5]}{e!.time[6]} / {e!.time[8]}{e!.time[9]} - {e!.data!}</p>
           <hr style={{border: "solid 1px grey"}}></hr>
           </div>
         ))}

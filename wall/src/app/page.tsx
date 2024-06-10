@@ -8,28 +8,23 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const subMessage = async (data: string) => {
     const body = { data };
-    await fetch(
-      "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message",
-      {
-        method: "POST",
-        headers: myHeaders,
-        body: JSON.stringify(body),
-        //referrerPolicy: "unsafe-url",
-      }
-    );
+    await fetch("/prod/message/", {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(body),
+      //referrerPolicy: "unsafe-url",
+    });
   };
   useEffect(() => {
     (async () => {
       const data = await fetch(
-        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all",
-        { method: "GET", headers: myHeaders, mode: "no-cors" }
+        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
       );
-      console.log(data);
-      const r = await data.json();
-      console.log(r);
-      setState(r);
+      const res = await data.json();
+      console.log(res);
+      setState(res);
     })();
-  }, []);
+  }, [state]);
   return (
     <div>
       <h1

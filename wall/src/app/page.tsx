@@ -12,6 +12,7 @@ export default function Home() {
   const [message, setMessage] = useState<string>("");
   const subMessage = async (data: string )=> {
     const body = { data, name: localStorage.getItem("name") };
+    console.log(body);
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
       {

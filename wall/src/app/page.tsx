@@ -1,14 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
+import EnterName from "./components/name";
 
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Access-Control-Allow-Origin", "http://localhost:3000");
+  myHeaders.append("Access-Control-Allow-Credentials", "true");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
-  const subMessage = async (data: string) => {
-    const body = { data };
+  const subMessage = async (data: string )=> {
+    const body = { data, name: localStorage.getItem("name") };
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
       {
@@ -25,12 +28,17 @@ export default function Home() {
   }, []);
   useEffect(() => {
     (async () => {
-      const data = await fetch(
-        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
-      );
-      const res = await data.json();
-      console.log(res);
-      setState(res);
+      try {
+        const data = await fetch(
+          "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/",
+          { headers: myHeaders }
+        );
+        const res = await data.json();
+        console.log(res);
+        setState(res);
+      } catch (err) {
+        console.log(err);
+      }
     })();
   }, [state]);
   if (loading) {
@@ -39,6 +47,9 @@ export default function Home() {
         <h1>loading...</h1>
       </div>
     );
+  }
+  if (!localStorage.getItem("name")) {
+    return <EnterName />;
   } else {
     return (
       <div>

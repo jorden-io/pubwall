@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  // myHeaders.append("Access-Control-Allow-Credentials", "true");
-  // myHeaders.append("Access-Control-Allow-Origin", "*");
+  myHeaders.append("Access-Control-Allow-Credentials", "true");
+  myHeaders.append("Access-Control-Allow-Origin", "*");
 
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -30,8 +30,8 @@ export default function Home() {
     (async () => {
       try {
         const data = await fetch(
-          "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/",
-          { headers: myHeaders }
+          "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
+          //,{ headers: myHeaders }
         );
         const res = await data.json();
         console.log(res);

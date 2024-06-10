@@ -112,6 +112,7 @@ export default function Home() {
               backgroundColor: "rgb(40 40 40)",
               borderRadius: "0px",
             }}
+            onClick={(e) => e.preventDefault()}
             onChange={(e) => setMessage(e.target.value)}
           ></input>
           <button

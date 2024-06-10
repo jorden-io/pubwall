@@ -2,6 +2,10 @@
 import { useEffect, useState } from "react";
 import EnterName from "./components/name";
 import Head from "next/head";
+import { GiTheater } from "react-icons/gi";
+import { FaBars } from "react-icons/fa";
+import { MdInfo } from "react-icons/md";
+import { BsInfoSquare } from "react-icons/bs";
 
 export default function Home() {
   const myHeaders = new Headers();
@@ -60,6 +64,8 @@ export default function Home() {
             content="width=device-width, initial-scale=1, maximum-scale=1"
           />
         </Head>
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <FaBars style={{fontSize: "25px", margin: "20px", color: "lightseagreen"}} />
         <h1
           style={{
             display: "flex",
@@ -71,6 +77,8 @@ export default function Home() {
         >
           Global Chat
         </h1>
+          <BsInfoSquare  style={{ fontSize: "25px", margin: "20px", color: "grey"}}/>
+        </div>
         <div
           style={{
             backgroundColor: "rgb(45 45 45)",
@@ -112,11 +120,12 @@ export default function Home() {
                   <span style={{ fontWeight: "600" }}> {e!.data!}</span>
                 </span>
               </div>
-              <hr style={{ border: "solid 1px grey" }}></hr>
+              <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
             </div>
           ))}
           <p id="hiddenp"></p>
         </div>
+        <h2 style={{fontSize: "1.2rem", display: "flex", justifyContent: "center", fontWeight: "100"}}>speaking as: {localStorage.getItem("name")}</h2>
         <div
           style={{
             display: "flex",
@@ -127,7 +136,7 @@ export default function Home() {
           }}
         >
           <input
-            placeholder="input"
+            placeholder="input . . ."
             style={{
               fontSize: "16px",
               width: "100%",

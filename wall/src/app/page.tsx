@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Access-Control-Allow-Credentials", "true");
-  myHeaders.append("Access-Control-Allow-Origin", "*");
+  // myHeaders.append("Access-Control-Allow-Credentials", "true");
+  // myHeaders.append("Access-Control-Allow-Origin", "*");
 
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);

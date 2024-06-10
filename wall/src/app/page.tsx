@@ -1,32 +1,31 @@
 "use client";
 import { useEffect, useState } from "react";
+import EnterName from "./components/name";
 
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Access-Control-Allow-Credentials", "true");
-  myHeaders.append("Access-Control-Allow-Origin", "*");
+  // myHeaders.append("Access-Control-Allow-Credentials", "true");
+  // myHeaders.append("Access-Control-Allow-Origin", "*");
 
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
   const subMessage = async (data: string) => {
-    const body = { data };
+    const body = { data, name: localStorage.getItem("name") };
+    console.log(body);
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
       {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(body),
-        //referrerPolicy: "unsafe-url",
       }
     );
     window.location.reload();
   };
   useEffect(() => {
     setLoading(false);
-  }, []);
-  useEffect(() => {
     (async () => {
       try {
         const data = await fetch(
@@ -47,6 +46,9 @@ export default function Home() {
         <h1>loading...</h1>
       </div>
     );
+  }
+  if (!localStorage.getItem("name")) {
+    return <EnterName />;
   } else {
     return (
       <div>
@@ -59,7 +61,7 @@ export default function Home() {
             margin: "20px",
           }}
         >
-          welcome to the secret society
+          Global Chat
         </h1>
         <div
           style={{
@@ -77,7 +79,7 @@ export default function Home() {
           {state.map((e: any) => (
             <div key={e.mid}>
               <p key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
-                {e!.mid!} - {e!.time[5]}
+                {e.name} {e!.mid!} - {e!.time[5]}
                 {e!.time[6]} / {e!.time[8]}
                 {e!.time[9]} - {e!.data!}
               </p>

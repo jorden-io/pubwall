@@ -51,7 +51,7 @@ export default function Home() {
             margin: "20px",
           }}
         >
-          welcome, dont say anything dumb
+          welcome to the secret society
         </h1>
         <div
           style={{
@@ -88,7 +88,13 @@ export default function Home() {
         >
           <input
             placeholder="input"
-            style={{ width: "100%", padding: "10px", border: "none", backgroundColor: "rgb(40 40 40)" }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "none",
+              backgroundColor: "rgb(40 40 40)",
+              borderRadius: "0px",
+            }}
             onChange={(e) => setMessage(e.target.value)}
           ></input>
           <button

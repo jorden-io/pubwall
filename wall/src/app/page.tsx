@@ -88,11 +88,12 @@ export default function Home() {
         >
           <input
             placeholder="input"
-            style={{ width: "100%", padding: "10px", border: "none" }}
+            style={{ width: "100%", padding: "10px", border: "none", backgroundColor: "rgb(40 40 40)" }}
             onChange={(e) => setMessage(e.target.value)}
           ></input>
           <button
             style={{
+              color: "white",
               width: "20%",
               padding: "10px",
               border: "none",

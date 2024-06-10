@@ -1,17 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import EnterName from "./components/name";
 
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  // myHeaders.append("Access-Control-Allow-Credentials", "true");
+  //myHeaders.append("Access-Control-Allow-Credentials", "true");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
   const subMessage = async (data: string) => {
     const body = { data };
-    console.log(body);
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
       {

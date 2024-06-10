@@ -10,16 +10,22 @@ export default function Home() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const body = { data };
-    await fetch("https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message", {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(body),
-      referrerPolicy: "unsafe-url",
-    });
+    await fetch(
+      "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message",
+      {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(body),
+        referrerPolicy: "unsafe-url",
+      }
+    );
   };
   useEffect(() => {
     (async () => {
-      const data = await fetch("https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all");
+      const data = await fetch(
+        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all",
+        { mode: "no-cors" }
+      );
       const r = await data.json();
       setState(r);
       console.log(r);
@@ -53,8 +59,12 @@ export default function Home() {
       >
         {state.map((e: any) => (
           <div key={e.mid}>
-          <p key={e!.mid!} style={{padding: "10px", fontWeight: "150"}}>{e!.mid!} - {e!.time[5]}{e!.time[6]} / {e!.time[8]}{e!.time[9]} - {e!.data!}</p>
-          <hr style={{border: "solid 1px grey"}}></hr>
+            <p key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
+              {e!.mid!} - {e!.time[5]}
+              {e!.time[6]} / {e!.time[8]}
+              {e!.time[9]} - {e!.data!}
+            </p>
+            <hr style={{ border: "solid 1px grey" }}></hr>
           </div>
         ))}
       </div>

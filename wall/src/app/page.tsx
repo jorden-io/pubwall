@@ -40,7 +40,7 @@ export default function Home() {
         console.log(err);
       }
     })();
-  }, [state]);
+  }, []);
   if (loading) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>

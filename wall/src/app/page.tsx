@@ -39,7 +39,6 @@ export default function Home() {
       } catch (err) {
         console.log(err);
       }
-    document.getElementById("hiddenp")?.scrollIntoView({behavior: "smooth"});
     })();
   }, []);
   if (loading) {
@@ -52,6 +51,7 @@ export default function Home() {
   if (!localStorage.getItem("name")) {
     return <EnterName />;
   } else {
+    document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
     return (
       <div>
         <Head>
@@ -86,13 +86,32 @@ export default function Home() {
         >
           {state.map((e: any) => (
             <div key={e.mid}>
-              <p onClick={() => {
-                document.getElementById("hiddenp")?.scrollIntoView({behavior: "smooth"});
-              }} key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
-                {e.name} - {e!.time[5]}
-                {e!.time[6]} / {e!.time[8]}
-                {e!.time[9]} - {e!.data!}
-              </p>
+              <div
+                onClick={() => {
+                  document
+                    .getElementById("hiddenp")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                key={e!.mid!}
+                style={{ display: "flex", padding: "10px", fontWeight: "150" }}
+              >
+                <p
+                  style={{
+                    color:
+                      localStorage.getItem("name") == e.name
+                        ? "lightseagreen"
+                        : "white",
+                  }}
+                >
+                  {localStorage.getItem("name") == e.name ? "me" : e.name}
+                </p>
+                <span>
+                  -({e!.time[5]}
+                  {e!.time[6]}/{e!.time[8]}
+                  {e!.time[9]})-
+                  <span style={{ fontWeight: "600" }}> {e!.data!}</span>
+                </span>
+              </div>
               <hr style={{ border: "solid 1px grey" }}></hr>
             </div>
           ))}

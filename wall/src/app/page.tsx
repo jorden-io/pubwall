@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [state, setState] = useState([]);
@@ -24,13 +22,13 @@ export default function Home() {
     (async () => {
       const data = await fetch(
         "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all",
-        { mode: "no-cors" }
+        { method: "GET", mode: "no-cors" }
       );
       const r = await data.json();
       setState(r);
       console.log(r);
     })();
-  }, []);
+  }, [state]);
   return (
     <div>
       <h1

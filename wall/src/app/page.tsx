@@ -5,8 +5,7 @@ import EnterName from "./components/name";
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Access-Control-Allow-Origin", "http://localhost:3000");
-  myHeaders.append("Access-Control-Allow-Credentials", "true");
+  // myHeaders.append("Access-Control-Allow-Credentials", "true");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -49,9 +48,10 @@ export default function Home() {
       </div>
     );
   }
-  if (!localStorage.getItem("name")) {
-    return <EnterName />;
-  } else {
+  // if (!localStorage.getItem("name")) {
+  //   return <EnterName />;
+  // }
+  else {
     return (
       <div>
         <h1

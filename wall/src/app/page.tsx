@@ -100,7 +100,7 @@ export default function Home() {
             placeholder="input"
             style={{
               width: "100%",
-              padding: "10px",
+              padding: "20px",
               border: "none",
               backgroundColor: "rgb(40 40 40)",
               borderRadius: "0px",
@@ -111,7 +111,7 @@ export default function Home() {
             style={{
               color: "white",
               width: "20%",
-              padding: "10px",
+              padding: "20px",
               border: "none",
               borderRadius: "0px",
               backgroundColor: "lightseagreen",

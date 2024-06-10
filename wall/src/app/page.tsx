@@ -14,7 +14,7 @@ export default function Home() {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(body),
-        referrerPolicy: "unsafe-url",
+        //referrerPolicy: "unsafe-url",
       }
     );
   };
@@ -24,11 +24,12 @@ export default function Home() {
         "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all",
         { method: "GET", mode: "no-cors" }
       );
+      console.log(data);
       const r = await data.json();
-      setState(r);
       console.log(r);
+      setState(r);
     })();
-  }, [state]);
+  }, []);
   return (
     <div>
       <h1

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  //myHeaders.append("Access-Control-Allow-Credentials", "true");
+  myHeaders.append("Access-Control-Allow-Credentials", "true");
+  myHeaders.append("Access-Control-Allow-Origin", "*");
+
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -45,11 +47,7 @@ export default function Home() {
         <h1>loading...</h1>
       </div>
     );
-  }
-  // if (!localStorage.getItem("name")) {
-  //   return <EnterName />;
-  // }
-  else {
+  } else {
     return (
       <div>
         <h1

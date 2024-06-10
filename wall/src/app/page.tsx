@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
   const [state, setState] = useState([]);
   const [message, setMessage] = useState("");
   const subMessage = async (data: string) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
     const body = { data };
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message",
@@ -22,7 +22,7 @@ export default function Home() {
     (async () => {
       const data = await fetch(
         "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all",
-        { method: "GET", mode: "no-cors" }
+        { method: "GET", headers: myHeaders, mode: "no-cors" }
       );
       console.log(data);
       const r = await data.json();

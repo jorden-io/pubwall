@@ -10,7 +10,7 @@ export default function Home() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const body = { data };
-    await fetch("http://18.191.156.238:8000/message", {
+    await fetch("https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message", {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(body),
@@ -19,7 +19,7 @@ export default function Home() {
   };
   useEffect(() => {
     (async () => {
-      const data = await fetch("http://18.191.156.238:8000/");
+      const data = await fetch("https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all");
       const r = await data.json();
       setState(r);
       console.log(r);

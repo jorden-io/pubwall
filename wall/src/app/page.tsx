@@ -8,7 +8,7 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const subMessage = async (data: string) => {
     const body = { data };
-    await fetch("/prod/message/", {
+    await fetch("https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/", {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(body),

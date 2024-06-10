@@ -39,6 +39,7 @@ export default function Home() {
       } catch (err) {
         console.log(err);
       }
+    document.getElementById("hiddenp")?.scrollIntoView({behavior: "smooth"});
     })();
   }, []);
   if (loading) {
@@ -85,7 +86,9 @@ export default function Home() {
         >
           {state.map((e: any) => (
             <div key={e.mid}>
-              <p key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
+              <p onClick={() => {
+                document.getElementById("hiddenp")?.scrollIntoView({behavior: "smooth"});
+              }} key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
                 {e.name} - {e!.time[5]}
                 {e!.time[6]} / {e!.time[8]}
                 {e!.time[9]} - {e!.data!}
@@ -93,6 +96,7 @@ export default function Home() {
               <hr style={{ border: "solid 1px grey" }}></hr>
             </div>
           ))}
+          <p id="hiddenp"></p>
         </div>
         <div
           style={{

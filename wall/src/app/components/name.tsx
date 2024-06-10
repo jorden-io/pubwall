@@ -3,6 +3,10 @@ interface props {}
 const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
   const subName = (n: string) => {
+    if(n.length < 2){
+        alert("name too short, must be greater than 2 chars");
+        return;
+    };
     localStorage.setItem("name", n);
     window.location.reload();
   };
@@ -22,6 +26,7 @@ const EnterName: FC<props> = () => {
       </h1>
       <input
         style={{
+          fontSize: "16px",
           textAlign: "center",
           border: "none",
           padding: "15px",

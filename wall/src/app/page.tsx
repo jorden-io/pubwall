@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import EnterName from "./components/name";
+import Head from "next/head";
 
 export default function Home() {
   const myHeaders = new Headers();
@@ -52,6 +53,12 @@ export default function Home() {
   } else {
     return (
       <div>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+        </Head>
         <h1
           style={{
             display: "flex",
@@ -79,7 +86,7 @@ export default function Home() {
           {state.map((e: any) => (
             <div key={e.mid}>
               <p key={e!.mid!} style={{ padding: "10px", fontWeight: "150" }}>
-                {e.name} {e!.mid!} - {e!.time[5]}
+                {e.name} - {e!.time[5]}
                 {e!.time[6]} / {e!.time[8]}
                 {e!.time[9]} - {e!.data!}
               </p>

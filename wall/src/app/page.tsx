@@ -6,6 +6,7 @@ import { GiTheater } from "react-icons/gi";
 import { FaBars } from "react-icons/fa";
 import { MdInfo } from "react-icons/md";
 import { BsInfoSquare } from "react-icons/bs";
+import Info from "./components/info";
 
 export default function Home() {
   const myHeaders = new Headers();
@@ -16,6 +17,18 @@ export default function Home() {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
+  const fetchMessags = async () => {
+    try {
+      const data = await fetch(
+        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
+        //,{ headers: myHeaders }
+      );
+      const res = await data.json();
+      setState(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const subMessage = async (data: string) => {
     const body = { data, name: localStorage.getItem("name") };
     console.log(body);
@@ -27,8 +40,11 @@ export default function Home() {
         body: JSON.stringify(body),
       }
     );
-    window.location.reload();
+    fetchMessags();
+    document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
+    //window.location.reload();
   };
+
   useEffect(() => {
     setLoading(false);
     (async () => {
@@ -48,7 +64,7 @@ export default function Home() {
   if (loading) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <h1>loading...</h1>
+        <h1 style={{ fontWeight: "100", marginTop: "200px" }}>loading...</h1>
       </div>
     );
   }
@@ -57,27 +73,35 @@ export default function Home() {
   } else {
     document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
     return (
-      <div>
+      <div id="message-page">
         <Head>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
           />
         </Head>
-        <div style={{display: "flex", justifyContent: "center"}}>
-          <FaBars style={{fontSize: "25px", margin: "20px", color: "lightseagreen"}} />
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "20px",
-            fontWeight: "100",
-            margin: "20px",
-          }}
-        >
-          Global Chat
-        </h1>
-          <BsInfoSquare  style={{ fontSize: "25px", margin: "20px", color: "grey"}}/>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <FaBars
+            style={{
+              fontSize: "25px",
+              margin: "20px",
+              color: "lightseagreen",
+            }}
+          />
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "20px",
+              fontWeight: "100",
+              margin: "20px",
+            }}
+          >
+            Global Chat
+          </h1>
+          <BsInfoSquare
+            style={{ fontSize: "25px", margin: "20px", color: "grey" }}
+          />
         </div>
         <div
           style={{
@@ -101,7 +125,11 @@ export default function Home() {
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
                 key={e!.mid!}
-                style={{ display: "flex", padding: "10px", fontWeight: "150" }}
+                style={{
+                  display: "flex",
+                  padding: "10px",
+                  fontWeight: "150",
+                }}
               >
                 <p
                   style={{
@@ -125,7 +153,16 @@ export default function Home() {
           ))}
           <p id="hiddenp"></p>
         </div>
-        <h2 style={{fontSize: "1.2rem", display: "flex", justifyContent: "center", fontWeight: "100"}}>speaking as: {localStorage.getItem("name")}</h2>
+        <h2
+          style={{
+            fontSize: "1.2rem",
+            display: "flex",
+            justifyContent: "center",
+            fontWeight: "100",
+          }}
+        >
+          speaking as: {localStorage.getItem("name")}
+        </h2>
         <div
           style={{
             display: "flex",
@@ -136,6 +173,7 @@ export default function Home() {
           }}
         >
           <input
+            id="minput"
             placeholder="input . . ."
             style={{
               fontSize: "16px",
@@ -157,7 +195,17 @@ export default function Home() {
               borderRadius: "0px",
               backgroundColor: "lightseagreen",
             }}
-            onClick={() => subMessage(message)}
+            onClick={() => {
+              setMessage("");
+              (document.getElementById("minput") as HTMLInputElement).value =
+                "";
+              subMessage(message);
+              setTimeout(() => {
+                document
+                  .getElementById("hiddenp")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }, 600);
+            }}
           >
             send
           </button>

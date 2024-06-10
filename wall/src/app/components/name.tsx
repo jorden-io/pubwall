@@ -4,6 +4,7 @@ const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
   const subName = (n: string) => {
     localStorage.setItem("name", n);
+    window.location.reload();
   };
   return (
     <div style={{marginTop: "150px"}}>

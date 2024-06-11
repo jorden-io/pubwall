@@ -103,59 +103,58 @@ export default function Home() {
             style={{ fontSize: "25px", margin: "20px", color: "whitesmoke" }}
           />
         </div>
-        <div style={{display: "flex", justifyContent: "center"}}>
-
-        <div
-          style={{
-            width: "1000px",
-            backgroundColor: "rgb(45 45 45)",
-            boxShadow: "inset 0px 0px 8px black",
-            //border: "solid 1px lightseagreen",
-            height: "350px",
-            margin: "0px",
-            overflowY: "scroll",
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-        >
-          {state.map((e: any) => (
-            <div key={e.mid}>
-              <div
-                onClick={() => {
-                  document
-                    .getElementById("hiddenp")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-                key={e!.mid!}
-                style={{
-                  display: "flex",
-                  padding: "10px",
-                  fontWeight: "150",
-                }}
-              >
-                <p
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              width: "1000px",
+              backgroundColor: "rgb(45 45 45)",
+              boxShadow: "inset 0px 0px 8px black",
+              //border: "solid 1px lightseagreen",
+              height: "350px",
+              margin: "0px",
+              overflowY: "scroll",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            {state.map((e: any) => (
+              <div key={e.mid}>
+                <div
+                  onClick={() => {
+                    document
+                      .getElementById("hiddenp")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  key={e!.mid!}
                   style={{
-                    color:
-                      localStorage.getItem("name") == e.name
-                        ? "#2bb41e"
-                        : "white",
+                    display: "flex",
+                    padding: "10px",
+                    fontWeight: "150",
                   }}
                 >
-                  {localStorage.getItem("name") == e.name ? "me" : e.name}
-                </p>
-                <span>
-                  -({e!.time[5]}
-                  {e!.time[6]}/{e!.time[8]}
-                  {e!.time[9]})-
-                  <span style={{ fontWeight: "600" }}> {e!.data!}</span>
-                </span>
+                  <p
+                    style={{
+                      color:
+                        localStorage.getItem("name") == e.name
+                          ? "#2bb41e"
+                          : "white",
+                    }}
+                  >
+                    {localStorage.getItem("name") == e.name ? "me" : e.name}
+                  </p>
+                  <span>
+                    -({e!.time[5]}
+                    {e!.time[6]}/{e!.time[8]}
+                    {e!.time[9]})-
+                    <span style={{ fontWeight: "600" }}> {e!.data!}</span>
+                  </span>
+                </div>
+                <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
               </div>
-              <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
-            </div>
-          ))}
-          <p id="hiddenp"></p>
-        </div>
+            ))}
+            <p id="hiddenp"></p>
+          </div>
         </div>
         <h2
           style={{
@@ -167,55 +166,57 @@ export default function Home() {
         >
           speaking as: {localStorage.getItem("name")}
         </h2>
-          <div
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            bottom: "0px",
+            position: "fixed",
+            width: "100%",
+          }}
+        >
+          <input
+            id="minput"
+            placeholder="input . . ."
             style={{
-              display: "flex",
-              justifyContent: "center",
-              bottom: "0px",
-              position: "fixed",
+              color: "white",
+              fontSize: "16px",
               width: "100%",
+              padding: "20px",
+              border: "none",
+              backgroundColor: "rgb(40 40 40)",
+              borderRadius: "0px",
+            }}
+            onClick={(e) => e.preventDefault()}
+            onChange={(e) => setMessage(e.target.value)}
+          ></input>
+          <button
+            style={{
+              color: "white",
+              width: "20%",
+              padding: "20px",
+              border: "none",
+              borderRadius: "0px",
+              backgroundColor: "#2bb41e",
+              fontSize: "16px",
+            }}
+            onClick={() => {
+              setMessage("");
+              (document.getElementById("minput") as HTMLInputElement).value =
+                "";
+              if (message.length > 1) {
+                subMessage(message);
+              }
+              setTimeout(() => {
+                document
+                  .getElementById("hiddenp")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }, 600);
             }}
           >
-            <input
-              id="minput"
-              placeholder="input . . ."
-              style={{
-                color: "white",
-                fontSize: "16px",
-                width: "100%",
-                padding: "20px",
-                border: "none",
-                backgroundColor: "rgb(40 40 40)",
-                borderRadius: "0px",
-              }}
-              onClick={(e) => e.preventDefault()}
-              onChange={(e) => setMessage(e.target.value)}
-            ></input>
-            <button
-              style={{
-                color: "white",
-                width: "20%",
-                padding: "20px",
-                border: "none",
-                borderRadius: "0px",
-                backgroundColor: "#2bb41e",
-                fontSize: "16px",
-              }}
-              onClick={() => {
-                setMessage("");
-                (document.getElementById("minput") as HTMLInputElement).value =
-                  "";
-                subMessage(message);
-                setTimeout(() => {
-                  document
-                    .getElementById("hiddenp")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }, 600);
-              }}
-            >
-              send
-            </button>
-          </div>
+            send
+          </button>
+        </div>
       </div>
     );
   }

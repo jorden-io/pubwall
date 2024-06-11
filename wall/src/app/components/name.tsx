@@ -11,21 +11,28 @@ const EnterName: FC<props> = () => {
     window.location.reload();
   };
   return (
-    <div style={{marginTop: "150px"}}>
-
+    <div>
+      <h1 style={{display: "flex", justifyContent: "center", fontWeight: "100", margin: "10px"}}> <span style={{color: "#2bb41e" }}>Frog</span>Chats.com</h1>
+    <div style={{marginTop: "150px", display: "flex", justifyContent: "center"}}>
     <div
       style={{
+        backgroundColor: "rgb(15 15 15)",
+        border: "solid 2px #2bb41e",
+        borderRadius: "10px",
+        padding: "80px",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
         margin: "0px",
+        width: "500px"
       }}
     >
       <h1 style={{ textAlign: "center", fontWeight: "100" }}>
-        input name to enter
+        enter a name?
       </h1>
       <input
         style={{
+          borderRadius: "10px",
           fontSize: "16px",
           textAlign: "center",
           border: "none",
@@ -36,13 +43,14 @@ const EnterName: FC<props> = () => {
         onChange={(e) => {
           setName(e.target.value);
         }}
-        placeholder="name..."
+        placeholder="froggy . . ."
       ></input>
       <button
         style={{
+          borderRadius: "10px",
           padding: "10px",
           margin: "5px",
-          backgroundColor: "lightseagreen",
+          backgroundColor: "#2bb41e",
           color: "white",
           border: "none",
         }}
@@ -52,6 +60,7 @@ const EnterName: FC<props> = () => {
       >
         submit name
       </button>
+    </div>
     </div>
     </div>
   );

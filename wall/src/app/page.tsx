@@ -62,7 +62,7 @@ export default function Home() {
   if (loading) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <h1 style={{ fontWeight: "100", marginTop: "200px" }}>loading...</h1>
+        <h1 style={{ fontWeight: "100", marginTop: "200px", color: "#2bb41e" }}>loading . . .</h1>
       </div>
     );
   }
@@ -98,7 +98,7 @@ export default function Home() {
             FrogChats
           </h1>
           <BsInfoSquare
-            style={{ fontSize: "25px", margin: "20px", color: "grey" }}
+            style={{ fontSize: "25px", margin: "20px", color: "whitesmoke" }}
           />
         </div>
         <div

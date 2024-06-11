@@ -2,9 +2,7 @@
 import { useEffect, useState } from "react";
 import EnterName from "./components/name";
 import Head from "next/head";
-import { GiTheater } from "react-icons/gi";
 import { FaBars } from "react-icons/fa";
-import { MdInfo } from "react-icons/md";
 import { BsInfoSquare } from "react-icons/bs";
 import Info from "./components/info";
 
@@ -85,7 +83,7 @@ export default function Home() {
             style={{
               fontSize: "25px",
               margin: "20px",
-              color: "lightseagreen",
+              color: "#2bb41e",
             }}
           />
           <h1
@@ -97,7 +95,7 @@ export default function Home() {
               margin: "20px",
             }}
           >
-            Global Chat
+            FrogChats
           </h1>
           <BsInfoSquare
             style={{ fontSize: "25px", margin: "20px", color: "grey" }}
@@ -135,7 +133,7 @@ export default function Home() {
                   style={{
                     color:
                       localStorage.getItem("name") == e.name
-                        ? "lightseagreen"
+                        ? "#2bb41e"
                         : "white",
                   }}
                 >
@@ -193,7 +191,8 @@ export default function Home() {
               padding: "20px",
               border: "none",
               borderRadius: "0px",
-              backgroundColor: "lightseagreen",
+              backgroundColor: "#2bb41e",
+              fontSize: "16px",
             }}
             onClick={() => {
               setMessage("");

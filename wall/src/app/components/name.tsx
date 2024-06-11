@@ -32,6 +32,7 @@ const EnterName: FC<props> = () => {
       </h1>
       <input
         style={{
+          color: "white",
           borderRadius: "10px",
           fontSize: "16px",
           textAlign: "center",
@@ -55,6 +56,7 @@ const EnterName: FC<props> = () => {
           border: "none",
         }}
         onClick={() => {
+          localStorage.setItem("sends", "0")
           subName(name);
         }}
       >

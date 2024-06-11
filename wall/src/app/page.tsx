@@ -11,7 +11,6 @@ export default function Home() {
   myHeaders.append("Content-Type", "application/json");
   // myHeaders.append("Access-Control-Allow-Credentials", "true");
   // myHeaders.append("Access-Control-Allow-Origin", "*");
-
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -29,6 +28,7 @@ export default function Home() {
   };
   const subMessage = async (data: string) => {
     const body = { data, name: localStorage.getItem("name") };
+    localStorage.setItem("sends", localStorage.getItem("sends")! + 1);
     console.log(body);
     await fetch(
       "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
@@ -42,7 +42,6 @@ export default function Home() {
     document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
     //window.location.reload();
   };
-
   useEffect(() => {
     setLoading(false);
     (async () => {
@@ -62,7 +61,9 @@ export default function Home() {
   if (loading) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <h1 style={{ fontWeight: "100", marginTop: "200px", color: "#2bb41e" }}>loading . . .</h1>
+        <h1 style={{ fontWeight: "100", marginTop: "200px", color: "#2bb41e" }}>
+          loading . . .
+        </h1>
       </div>
     );
   }
@@ -161,6 +162,7 @@ export default function Home() {
         >
           speaking as: {localStorage.getItem("name")}
         </h2>
+        {localStorage.getItem("sends")!.length < 5 ?  
         <div
           style={{
             display: "flex",
@@ -174,6 +176,7 @@ export default function Home() {
             id="minput"
             placeholder="input . . ."
             style={{
+              color: "white",
               fontSize: "16px",
               width: "100%",
               padding: "20px",
@@ -208,7 +211,7 @@ export default function Home() {
           >
             send
           </button>
-        </div>
+        </div> : ""}
       </div>
     );
   }

@@ -6,6 +6,9 @@ import { FaBars } from "react-icons/fa";
 import { BsInfoSquare } from "react-icons/bs";
 import Info from "./components/info";
 
+let time = 0;
+let currentlyRunning = false;
+let threeTries = 0;
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -27,8 +30,8 @@ export default function Home() {
     }
   };
   const subMessage = async (data: string) => {
+    threeTries = 0;
     const body = { data, name: localStorage.getItem("name") };
-    console.log(body);
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/message/",
       {
@@ -38,8 +41,22 @@ export default function Home() {
       }
     );
     fetchMessags();
-    document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
-    //window.location.reload();
+    if (currentlyRunning === false) {
+      currentlyRunning = true;
+      const pollingInterval = setInterval(() => {
+        fetchMessags();
+        time += 5;
+        console.log(time);
+        document
+          .getElementById("hiddenp")
+          ?.scrollIntoView({ behavior: "smooth" });
+        if (time >= 20) {
+          clearInterval(pollingInterval);
+          time = 0;
+          currentlyRunning = false;
+        }
+      }, 4000);
+    }
   };
 
   useEffect(() => {
@@ -58,6 +75,18 @@ export default function Home() {
         }
       })();
     }
+    setInterval(() => {
+      if (threeTries <= 3) {
+        if (!currentlyRunning) {
+          console.log("from 20");
+          fetchMessags();
+          document
+            .getElementById("hiddenp")
+            ?.scrollIntoView({ behavior: "smooth" });
+          threeTries += 1;
+        }
+      }
+    }, 20000);
   }, []);
   if (loading) {
     return (

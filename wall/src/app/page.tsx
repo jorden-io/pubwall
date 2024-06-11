@@ -73,7 +73,11 @@ export default function Home() {
         } catch (err) {
           console.log(err);
         }
-      })();
+      })().then(() => {
+        document
+          .getElementById("hiddenp")
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
     }
     setInterval(() => {
       if (threeTries <= 3) {

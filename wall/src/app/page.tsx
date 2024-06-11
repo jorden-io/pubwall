@@ -85,7 +85,7 @@ export default function Home() {
       });
     }
     setInterval(() => {
-      if (threeTries <= 3) {
+      if (threeTries <= 4) {
         if (!currentlyRunning) {
           console.log("from 20");
           fetchMessags();

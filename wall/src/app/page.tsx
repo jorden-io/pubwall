@@ -41,15 +41,22 @@ export default function Home() {
       }
     );
     fetchMessags();
+    setTimeout(() => {
+      document
+        .getElementById("hiddenp")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 600);
     if (currentlyRunning === false) {
       currentlyRunning = true;
       const pollingInterval = setInterval(() => {
         fetchMessags();
+        setTimeout(() => {
+          document
+            .getElementById("hiddenp")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }, 600);
         time += 5;
         console.log(time);
-        document
-          .getElementById("hiddenp")
-          ?.scrollIntoView({ behavior: "smooth" });
         if (time >= 20) {
           clearInterval(pollingInterval);
           time = 0;
@@ -240,11 +247,6 @@ export default function Home() {
               if (message.length > 1) {
                 subMessage(message);
               }
-              setTimeout(() => {
-                document
-                  .getElementById("hiddenp")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }, 600);
             }}
           >
             send

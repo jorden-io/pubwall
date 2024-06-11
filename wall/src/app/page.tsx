@@ -17,7 +17,7 @@ export default function Home() {
   const fetchMessags = async () => {
     try {
       const data = await fetch(
-        "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
+        "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
         //,{ headers: myHeaders }
       );
       const res = await data.json();
@@ -31,32 +31,34 @@ export default function Home() {
     localStorage.setItem("sends", localStorage.getItem("sends")! + 1);
     console.log(body);
     await fetch(
-      "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/message/",
+      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/message/",
       {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(body),
       }
     );
-    fetchMessags();
+    //fetchMessags();
     document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
     //window.location.reload();
   };
+
   useEffect(() => {
     setLoading(false);
-    (async () => {
-      try {
-        const data = await fetch(
-          "https://vi2bi0yw08.execute-api.us-east-2.amazonaws.com/prod/all/"
-          //,{ headers: myHeaders }
-        );
-        const res = await data.json();
-        console.log(res);
-        setState(res);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    if (true) {
+      (async () => {
+        try {
+          const data = await fetch(
+            "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
+            //,{ headers: myHeaders }
+          );
+          const res = await data.json();
+          setState(res);
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+    }
   }, []);
   if (loading) {
     return (
@@ -102,8 +104,11 @@ export default function Home() {
             style={{ fontSize: "25px", margin: "20px", color: "whitesmoke" }}
           />
         </div>
+        <div style={{display: "flex", justifyContent: "center"}}>
+
         <div
           style={{
+            width: "1000px",
             backgroundColor: "rgb(45 45 45)",
             boxShadow: "inset 0px 0px 8px black",
             //border: "solid 1px lightseagreen",
@@ -152,6 +157,7 @@ export default function Home() {
           ))}
           <p id="hiddenp"></p>
         </div>
+        </div>
         <h2
           style={{
             fontSize: "1.2rem",
@@ -162,56 +168,59 @@ export default function Home() {
         >
           speaking as: {localStorage.getItem("name")}
         </h2>
-        {localStorage.getItem("sends")!.length < 5 ?  
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            bottom: "0px",
-            position: "fixed",
-            width: "100%",
-          }}
-        >
-          <input
-            id="minput"
-            placeholder="input . . ."
+        {localStorage.getItem("sends")!.length < 5 ? (
+          <div
             style={{
-              color: "white",
-              fontSize: "16px",
+              display: "flex",
+              justifyContent: "center",
+              bottom: "0px",
+              position: "fixed",
               width: "100%",
-              padding: "20px",
-              border: "none",
-              backgroundColor: "rgb(40 40 40)",
-              borderRadius: "0px",
-            }}
-            onClick={(e) => e.preventDefault()}
-            onChange={(e) => setMessage(e.target.value)}
-          ></input>
-          <button
-            style={{
-              color: "white",
-              width: "20%",
-              padding: "20px",
-              border: "none",
-              borderRadius: "0px",
-              backgroundColor: "#2bb41e",
-              fontSize: "16px",
-            }}
-            onClick={() => {
-              setMessage("");
-              (document.getElementById("minput") as HTMLInputElement).value =
-                "";
-              subMessage(message);
-              setTimeout(() => {
-                document
-                  .getElementById("hiddenp")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }, 600);
             }}
           >
-            send
-          </button>
-        </div> : ""}
+            <input
+              id="minput"
+              placeholder="input . . ."
+              style={{
+                color: "white",
+                fontSize: "16px",
+                width: "100%",
+                padding: "20px",
+                border: "none",
+                backgroundColor: "rgb(40 40 40)",
+                borderRadius: "0px",
+              }}
+              onClick={(e) => e.preventDefault()}
+              onChange={(e) => setMessage(e.target.value)}
+            ></input>
+            <button
+              style={{
+                color: "white",
+                width: "20%",
+                padding: "20px",
+                border: "none",
+                borderRadius: "0px",
+                backgroundColor: "#2bb41e",
+                fontSize: "16px",
+              }}
+              onClick={() => {
+                setMessage("");
+                (document.getElementById("minput") as HTMLInputElement).value =
+                  "";
+                subMessage(message);
+                setTimeout(() => {
+                  document
+                    .getElementById("hiddenp")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }, 600);
+              }}
+            >
+              send
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

@@ -40,21 +40,19 @@ export default function Home() {
         body: JSON.stringify(body),
       }
     );
-    fetchMessags();
-    setTimeout(() => {
+    fetchMessags().then(() => {
       document
         .getElementById("hiddenp")
         ?.scrollIntoView({ behavior: "smooth" });
-    }, 600);
+    });
     if (currentlyRunning === false) {
       currentlyRunning = true;
       const pollingInterval = setInterval(() => {
-        fetchMessags();
-        setTimeout(() => {
+        fetchMessags().then(() => {
           document
             .getElementById("hiddenp")
             ?.scrollIntoView({ behavior: "smooth" });
-        }, 600);
+        });
         time += 5;
         console.log(time);
         if (time >= 20) {

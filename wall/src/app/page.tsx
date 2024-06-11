@@ -28,7 +28,6 @@ export default function Home() {
   };
   const subMessage = async (data: string) => {
     const body = { data, name: localStorage.getItem("name") };
-    localStorage.setItem("sends", localStorage.getItem("sends")! + 1);
     console.log(body);
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/message/",
@@ -168,7 +167,6 @@ export default function Home() {
         >
           speaking as: {localStorage.getItem("name")}
         </h2>
-        {localStorage.getItem("sends")!.length < 5 ? (
           <div
             style={{
               display: "flex",
@@ -218,9 +216,6 @@ export default function Home() {
               send
             </button>
           </div>
-        ) : (
-          ""
-        )}
       </div>
     );
   }

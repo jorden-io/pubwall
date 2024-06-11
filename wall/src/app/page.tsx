@@ -37,7 +37,7 @@ export default function Home() {
         body: JSON.stringify(body),
       }
     );
-    //fetchMessags();
+    fetchMessags();
     document.getElementById("hiddenp")?.scrollIntoView({ behavior: "smooth" });
     //window.location.reload();
   };

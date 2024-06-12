@@ -2,16 +2,21 @@ import { FC, useState } from "react";
 interface props {}
 const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
-  const subName = async (n: string) => {
-    if (n.length < 2) {
+  const subName = async (name: string) => {
+    if (name.length < 2) {
       alert("name too short, must be greater than 2 chars");
       return;
     }
-    // const res = await fetch(
-    //   "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/isbanned/"
-    // );
-    // const ip = await res.json();
-    localStorage.setItem("name", n);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const body = { name };
+    const res = await fetch(
+      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createuser/",
+      { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
+    );
+    const user = await res.json();
+    localStorage.setItem("name", name);
+    localStorage.setItem("id", user[0].uid);
     window.location.reload();
   };
   return (
@@ -25,11 +30,13 @@ const EnterName: FC<props> = () => {
         }}
       >
         {" "}
-        <span style={{ color: "#2bb41e" }}>Frog</span>Chats.com
+        <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
+        <span style={{ color: "orange" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span>
       </h1>
       <div
         style={{
-          marginTop: "150px",
+          marginTop: "50px",
           display: "flex",
           justifyContent: "center",
         }}
@@ -56,7 +63,7 @@ const EnterName: FC<props> = () => {
               borderRadius: "10px",
               fontSize: "16px",
               textAlign: "center",
-              border: "none",
+              border: "solid 2px orange",
               padding: "15px",
               margin: "5px",
               backgroundColor: "rgb(40 40 40)",
@@ -72,7 +79,7 @@ const EnterName: FC<props> = () => {
               padding: "10px",
               margin: "5px",
               backgroundColor: "#2bb41e",
-              color: "white",
+              color: "whitesmoke",
               border: "none",
             }}
             onClick={() => {
@@ -82,8 +89,29 @@ const EnterName: FC<props> = () => {
           >
             submit name
           </button>
+          <p
+            style={{
+              textAlign: "center",
+              borderRadius: "0px",
+              color: "orange",
+              fontWeight: "1000",
+            }}
+          >
+            NOTE!
+          </p>
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "100",
+              color: "whitesmoke",
+            }}
+          >
+            FrogChats is for fun, anonymous, temporary chatting. Everything is
+            deleted within a week or before if you choose to log out:) have fun!{" "}
+          </p>
         </div>
       </div>
+      <p>hi</p>
     </div>
   );
 };

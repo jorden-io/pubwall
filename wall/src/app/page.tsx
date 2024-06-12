@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import EnterName from "./components/name";
 import Head from "next/head";
-import { FaBars } from "react-icons/fa";
-import { BsInfoSquare } from "react-icons/bs";
 import Info from "./components/info";
+import ButtonOptions from "./components/buttonsOptions";
+import Nav from "./components/nav";
+import GlobalChat from "./components/globalChat";
+import Loading from "./components/loading";
 
 let time = 0;
 let currentlyRunning = false;
@@ -67,7 +69,7 @@ export default function Home() {
   useEffect(() => {
     setLoading(false);
     if (true) {
-      (async () => {
+        (async () => {
         try {
           const data = await fetch(
             "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
@@ -98,13 +100,7 @@ export default function Home() {
     }, 20000);
   }, []);
   if (loading) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <h1 style={{ fontWeight: "100", marginTop: "200px", color: "#2bb41e" }}>
-          loading . . .
-        </h1>
-      </div>
-    );
+    return <Loading />;
   }
   if (!localStorage.getItem("name")) {
     return <EnterName />;
@@ -118,82 +114,9 @@ export default function Home() {
             content="width=device-width, initial-scale=1, maximum-scale=1"
           />
         </Head>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <FaBars
-            style={{
-              fontSize: "25px",
-              margin: "20px",
-              color: "#2bb41e",
-            }}
-          />
-          <h1
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontSize: "20px",
-              fontWeight: "100",
-              margin: "20px",
-            }}
-          >
-            FrogChats
-          </h1>
-          <BsInfoSquare
-            style={{ fontSize: "25px", margin: "20px", color: "whitesmoke" }}
-          />
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div
-            style={{
-              width: "1000px",
-              backgroundColor: "rgb(45 45 45)",
-              boxShadow: "inset 0px 0px 8px black",
-              //border: "solid 1px lightseagreen",
-              height: "350px",
-              margin: "0px",
-              overflowY: "scroll",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            {state.map((e: any) => (
-              <div key={e.mid}>
-                <div
-                  onClick={() => {
-                    document
-                      .getElementById("hiddenp")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  key={e!.mid!}
-                  style={{
-                    display: "flex",
-                    padding: "10px",
-                    fontWeight: "150",
-                  }}
-                >
-                  <p
-                    style={{
-                      color:
-                        localStorage.getItem("name") == e.name
-                          ? "#2bb41e"
-                          : "white",
-                    }}
-                  >
-                    {localStorage.getItem("name") == e.name ? "me" : e.name}
-                  </p>
-                  <span>
-                    -({e!.time[5]}
-                    {e!.time[6]}/{e!.time[8]}
-                    {e!.time[9]})-
-                    <span style={{ fontWeight: "600" }}> {e!.data!}</span>
-                  </span>
-                </div>
-                <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
-              </div>
-            ))}
-            <p id="hiddenp"></p>
-          </div>
-        </div>
+        <Nav title="Global FrogChats" />
+        <ButtonOptions />
+        <GlobalChat gmessageArray={state} />
         <h2
           style={{
             fontSize: "1.2rem",
@@ -202,7 +125,11 @@ export default function Home() {
             fontWeight: "100",
           }}
         >
-          speaking as: {localStorage.getItem("name")}
+          speaking as-{" "}
+          <span style={{ color: "orange" }}>
+            {" "}
+            {localStorage.getItem("name")}
+          </span>
         </h2>
         <div
           style={{
@@ -223,7 +150,8 @@ export default function Home() {
               padding: "20px",
               border: "none",
               backgroundColor: "rgb(40 40 40)",
-              borderRadius: "0px",
+              borderRadius: "5px",
+              margin: "10px",
             }}
             onClick={(e) => e.preventDefault()}
             onChange={(e) => setMessage(e.target.value)}
@@ -234,9 +162,10 @@ export default function Home() {
               width: "20%",
               padding: "20px",
               border: "none",
-              borderRadius: "0px",
+              borderRadius: "5px",
               backgroundColor: "#2bb41e",
               fontSize: "16px",
+              margin: "10px",
             }}
             onClick={() => {
               setMessage("");

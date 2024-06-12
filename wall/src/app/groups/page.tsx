@@ -21,7 +21,7 @@ export default function Comp() {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div style={{width: "80%"}}>
           {groups!.map((e: any) => (
-            <div style={{backgroundColor: "#2bb41e", display: "flex", justifyContent: "center", margin: "5px", padding: "10px", borderRadius: "5px"}}>{e.groupname}</div>
+            <div key={e.gid} style={{backgroundColor: "#2bb41e", display: "flex", justifyContent: "center", margin: "5px", padding: "10px", borderRadius: "5px"}}>{e.groupname}</div>
           ))}
         </div>
       </div>

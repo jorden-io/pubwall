@@ -4,9 +4,9 @@ import Nav from "../components/nav";
 import CreateGroup from "../components/createGroup";
 
 export default function Comp() {
-  const uid = localStorage.getItem("id");
   const [groups, setGroups] = useState([]);
   useEffect(() => {
+  const uid = localStorage.getItem("id");
     (async () => {
       const res = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${uid}`

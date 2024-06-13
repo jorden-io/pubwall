@@ -1,3 +1,4 @@
+
 "use client";
 import { FC, useEffect, useState } from "react";
 import Nav from "../components/nav";
@@ -12,7 +13,7 @@ interface props {
 let time = 0;
 let currentlyRunning = false;
 let threeTries = 0;
-const InGroup: FC<props> = ({ gid, groupname, name, description }) => {
+const InGroup: FC<props> = ({description, gid, groupname, name}) => {
   interface token {
     uid: number;
   }

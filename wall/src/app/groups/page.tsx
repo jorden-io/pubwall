@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Nav from "../components/nav";
 import { decode } from "jsonwebtoken";
 import CreateGroup from "../components/createGroup";
-import InGroup from "../ingroup/page";
+import InGroup from "../ingroup/inGroup";
 
 export default function Comp() {
   const [inGroup, setInGroup] = useState<boolean>(false);

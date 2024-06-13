@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FC, useEffect } from "react";
-import { FaX } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
-import Nav from "./nav";
 interface props {}
 const Info: FC<props> = () => {
   useEffect(() => {}, []);

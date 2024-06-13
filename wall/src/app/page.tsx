@@ -6,17 +6,15 @@ import ButtonOptions from "./components/buttonsOptions";
 import Nav from "./components/nav";
 import GlobalChat from "./components/globalChat";
 import Loading from "./components/loading";
-import {decode} from "jsonwebtoken";
+import { decode } from "jsonwebtoken";
 
 let time = 0;
 let currentlyRunning = false;
 let threeTries = 0;
-  let t = 0;
+let t = 0;
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  // myHeaders.append("Access-Control-Allow-Credentials", "true");
-  // myHeaders.append("Access-Control-Allow-Origin", "*");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -24,7 +22,6 @@ export default function Home() {
     try {
       const data = await fetch(
         "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
-        //,{ headers: myHeaders }
       );
       const res = await data.json();
       setState(res);
@@ -67,20 +64,19 @@ export default function Home() {
     }
   };
 
-  interface token{
-    uid: number
+  interface token {
+    uid: number;
   }
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if (localStorage.getItem("token")) {
       t = (decode(localStorage.getItem("token")!) as token).uid;
-    };
+    }
     setLoading(false);
     if (true) {
-        (async () => {
+      (async () => {
         try {
           const data = await fetch(
             "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
-            //,{ headers: myHeaders }
           );
           const res = await data.json();
           setState(res);
@@ -109,9 +105,9 @@ export default function Home() {
   if (loading) {
     return <Loading />;
   }
-  if(!t){
+  if (!t) {
     return <EnterName />;
-  };
+  }
   if (!localStorage.getItem("name")) {
     return <EnterName />;
   } else {

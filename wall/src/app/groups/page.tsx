@@ -4,7 +4,6 @@ import Nav from "../components/nav";
 import { decode } from "jsonwebtoken";
 import CreateGroup from "../components/createGroup";
 import InGroup from "../ingroup/inGroup";
-import { redirect } from "next/navigation";
 import EnterName from "../components/name";
 
 let t = 0;
@@ -24,11 +23,11 @@ export default function Comp() {
       t = (decode(localStorage.getItem("token")!) as token).uid;
     }
     (async () => {
-      const res = await fetch(
-        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
-      );
-      const groupInfo = await res.json();
-      setGroups(groupInfo);
+      // const res = await fetch(
+      //   `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
+      // );
+      // const groupInfo = await res.json();
+      // setGroups(groupInfo);
       const gres = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/allgroups/`
       );
@@ -123,7 +122,7 @@ export default function Comp() {
                 >
                   {" "}
                   <p style={{ width: "100%", padding: "10px" }}>
-                    {e.groupname}{" "}
+                    {e.name} - ({e.groupname}){" "}
                   </p>{" "}
                   <button
                     onClick={() => {
@@ -134,9 +133,11 @@ export default function Comp() {
                       setInGroup(true);
                     }}
                     style={{
-                      width: "100%",
+                      width: "50%",
                       padding: "10px",
-                      backgroundColor: "orange",
+                      backgroundColor: "darkgreen",
+                      fontWeight: "1000",
+                      fontSize: "16px",
                       color: "white",
                       border: "none",
                       borderRadius: "5px",

@@ -59,7 +59,6 @@ const CreateGroup: FC = () => {
             }}
           ></input>
         </div>
-        <p>{groupName}</p>
         <button
           style={{
             width: "100%",

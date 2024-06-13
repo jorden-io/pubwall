@@ -15,7 +15,6 @@ const ButtonOptions: FC<props> = () => {
               margin: "5px",
               width: "100%",
               padding: "15px",
-              //border: `solid 2px ${borderColor}`,
               border: "none",
               backgroundColor: "#2bb41e",
               color: "white",

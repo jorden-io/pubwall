@@ -19,11 +19,11 @@ export default function Comp() {
   useEffect(() => {
     const t = (decode(localStorage.getItem("token")!) as token).uid;
     (async () => {
-      // const res = await fetch(
-      //   `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
-      // );
-      // const groupInfo = await res.json();
-      // setGroups(groupInfo);
+      const res = await fetch(
+        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
+      );
+      const groupInfo = await res.json();
+      setGroups(groupInfo);
       const gres = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/allgroups/`
       );

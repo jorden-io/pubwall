@@ -2,15 +2,16 @@
 import { useEffect, useState } from "react";
 import EnterName from "./components/name";
 import Head from "next/head";
-import Info from "./components/info";
 import ButtonOptions from "./components/buttonsOptions";
 import Nav from "./components/nav";
 import GlobalChat from "./components/globalChat";
 import Loading from "./components/loading";
+import {decode} from "jsonwebtoken";
 
 let time = 0;
 let currentlyRunning = false;
 let threeTries = 0;
+  let t = 0;
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -66,7 +67,13 @@ export default function Home() {
     }
   };
 
+  interface token{
+    uid: number
+  }
   useEffect(() => {
+    if(localStorage.getItem("token")){
+      t = (decode(localStorage.getItem("token")!) as token).uid;
+    };
     setLoading(false);
     if (true) {
         (async () => {
@@ -102,6 +109,9 @@ export default function Home() {
   if (loading) {
     return <Loading />;
   }
+  if(!t){
+    return <EnterName />;
+  };
   if (!localStorage.getItem("name")) {
     return <EnterName />;
   } else {

@@ -4,7 +4,10 @@ import Nav from "../components/nav";
 import { decode } from "jsonwebtoken";
 import CreateGroup from "../components/createGroup";
 import InGroup from "../ingroup/inGroup";
+import { redirect } from "next/navigation";
+import EnterName from "../components/name";
 
+let t = 0;
 export default function Comp() {
   const [inGroup, setInGroup] = useState<boolean>(false);
   const [groups, setGroups] = useState([]);
@@ -17,7 +20,9 @@ export default function Comp() {
     uid: number;
   }
   useEffect(() => {
-    const t = (decode(localStorage.getItem("token")!) as token).uid;
+    if (localStorage.getItem("token")) {
+      t = (decode(localStorage.getItem("token")!) as token).uid;
+    }
     (async () => {
       const res = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
@@ -34,14 +39,34 @@ export default function Comp() {
   if (inGroup) {
     return (
       <>
-      <div style={{display: "flex", justifyContent: "center"}}>
-        <div style={{width: "1000px", margin: "10px"}}>
-        <button style={{ borderRadius: "5px", backgroundColor: "orange", width: "100%", padding: "10px", color: "white", border: "none"}} onClick={() => setInGroup(false)}>exit group</button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "1000px", margin: "10px" }}>
+            <button
+              style={{
+                borderRadius: "5px",
+                backgroundColor: "orange",
+                width: "100%",
+                padding: "10px",
+                color: "white",
+                border: "none",
+              }}
+              onClick={() => setInGroup(false)}
+            >
+              exit group
+            </button>
+          </div>
         </div>
-      </div>
-        <InGroup gid={groupNumber!} groupname={grouName} name={creator} description={gdescription} />
+        <InGroup
+          gid={groupNumber!}
+          groupname={grouName}
+          name={creator}
+          description={gdescription}
+        />
       </>
     );
+  }
+  if (!t) {
+    return <EnterName />;
   } else {
     return (
       <div>
@@ -124,7 +149,16 @@ export default function Comp() {
             </div>
           </div>
         </div>
-        <h2 style={{display: "flex", justifyContent: "center", margin: "5px", fontWeight: "100"}}>create group</h2>
+        <h2
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "5px",
+            fontWeight: "100",
+          }}
+        >
+          create group
+        </h2>
         <CreateGroup />
       </div>
     );

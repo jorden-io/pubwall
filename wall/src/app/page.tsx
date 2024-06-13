@@ -68,36 +68,36 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(false);
-    if (true) {
-        (async () => {
-        try {
-          const data = await fetch(
-            "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
-            //,{ headers: myHeaders }
-          );
-          const res = await data.json();
-          setState(res);
-        } catch (err) {
-          console.log(err);
-        }
-      })().then(() => {
-        document
-          .getElementById("hiddenp")
-          ?.scrollIntoView({ behavior: "smooth" });
-      });
-    }
-    setInterval(() => {
-      if (threeTries <= 4) {
-        if (!currentlyRunning) {
-          console.log("from 20");
-          fetchMessags();
-          document
-            .getElementById("hiddenp")
-            ?.scrollIntoView({ behavior: "smooth" });
-          threeTries += 1;
-        }
-      }
-    }, 20000);
+    // if (true) {
+    //     (async () => {
+    //     try {
+    //       const data = await fetch(
+    //         "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
+    //         //,{ headers: myHeaders }
+    //       );
+    //       const res = await data.json();
+    //       setState(res);
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   })().then(() => {
+    //     document
+    //       .getElementById("hiddenp")
+    //       ?.scrollIntoView({ behavior: "smooth" });
+    //   });
+    // }
+    // setInterval(() => {
+    //   if (threeTries <= 4) {
+    //     if (!currentlyRunning) {
+    //       console.log("from 20");
+    //       fetchMessags();
+    //       document
+    //         .getElementById("hiddenp")
+    //         ?.scrollIntoView({ behavior: "smooth" });
+    //       threeTries += 1;
+    //     }
+    //   }
+    // }, 20000);
   }, []);
   if (loading) {
     return <Loading />;
@@ -115,6 +115,7 @@ export default function Home() {
           />
         </Head>
         <Nav title="Global FrogChats" />
+        {/* <Info /> */}
         <ButtonOptions />
         <GlobalChat gmessageArray={state} />
         <h2
@@ -172,7 +173,7 @@ export default function Home() {
               (document.getElementById("minput") as HTMLInputElement).value =
                 "";
               if (message.length > 1) {
-                subMessage(message);
+                //subMessage(message);
               }
             }}
           >

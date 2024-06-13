@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { json } from "stream/consumers";
 
 const CreateGroup: FC = () => {
   const [groupName, setGroupName] = useState<string>();

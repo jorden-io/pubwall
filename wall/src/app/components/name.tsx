@@ -111,7 +111,6 @@ const EnterName: FC<props> = () => {
           </p>
         </div>
       </div>
-      <p>hi</p>
     </div>
   );
 };

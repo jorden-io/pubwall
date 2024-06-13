@@ -1,7 +1,10 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
+import { sign, decode } from "jsonwebtoken";
 interface props {}
 const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
+  useEffect(() => {
+  }, []);
   const subName = async (name: string) => {
     if (name.length < 2) {
       alert("name too short, must be greater than 2 chars");
@@ -15,8 +18,9 @@ const EnterName: FC<props> = () => {
       { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
     );
     const user = await res.json();
+    const jwt = sign({uid: user[0].uid}, "bia", { algorithm: "HS256", expiresIn: "24hrs" });
     localStorage.setItem("name", name);
-    localStorage.setItem("id", user[0].uid);
+    localStorage.setItem("token", jwt);
     window.location.reload();
   };
   return (

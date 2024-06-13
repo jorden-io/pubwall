@@ -65,7 +65,7 @@ export default function Comp() {
             }}
           >
             {globalGroups.map((e: any) => (
-              <div  style={{display: "flex", padding: "10px", backgroundColor: "#2bb41e", margin: "5px", borderRadius: "5px"}}>
+              <div key={e.gid}  style={{display: "flex", padding: "10px", backgroundColor: "#2bb41e", margin: "5px", borderRadius: "5px"}}>
                 {" "}
                 <p style={{width: "100%", padding: "10px"}}>{e.groupname} </p>{" "}
                 <button style={{width: "100%", padding: "10px", backgroundColor: "orange", color: "white", border: "none", borderRadius: "5px"}}>join</button>

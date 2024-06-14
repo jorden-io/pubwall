@@ -31,7 +31,7 @@ export default function Home() {
   };
   const subMessage = async (data: string) => {
     threeTries = 0;
-    const body = { data, name: localStorage.getItem("name") };
+    const body = { data, name: localStorage.getItem("name"), gender: localStorage.getItem("gender") };
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/message/",
       {
@@ -115,6 +115,7 @@ export default function Home() {
     return (
       <div id="message-page">
         <Head>
+          <title>Frog Chats</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"

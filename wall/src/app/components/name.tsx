@@ -1,8 +1,10 @@
 import { FC, useState } from "react";
 import { sign } from "jsonwebtoken";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 interface props {}
 const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
+  const [gender, setGender] = useState("string");
   const subName = async (name: string) => {
     if (name.length < 2) {
       alert("name too short, must be greater than 2 chars");
@@ -10,7 +12,7 @@ const EnterName: FC<props> = () => {
     }
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    const body = { name };
+    const body = { name, gender };
     const res = await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createuser/",
       { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
@@ -60,8 +62,44 @@ const EnterName: FC<props> = () => {
           }}
         >
           <h1 style={{ textAlign: "center", fontWeight: "100" }}>
-            enter a name?
+            enter a name
           </h1>
+          <p style={{ textAlign: "center", margin: "5px", fontWeight: "100" }}>
+            {" "}
+            and select a gender
+          </p>
+          <div
+            style={{ display: "flex", justifyContent: "center", margin: "5px" }}
+          >
+            <BsGenderFemale
+              onClick={() => {
+                setGender("female");
+              }}
+              style={{
+                width: "100%",
+                backgroundColor: "pink",
+                border: "solid 1px grey",
+                borderRadius: "5px",
+                padding: "5px",
+                fontSize: "40px",
+                marginRight: "2.5px",
+              }}
+            />
+            <BsGenderMale
+              onClick={() => {
+                setGender("male");
+              }}
+              style={{
+                width: "100%",
+                backgroundColor: "lightblue",
+                border: "solid 1px grey",
+                borderRadius: "5px",
+                padding: "5px",
+                fontSize: "40px",
+                marginLeft: "2.5px",
+              }}
+            />
+          </div>
           <input
             style={{
               color: "white",

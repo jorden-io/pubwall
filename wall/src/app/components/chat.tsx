@@ -1,15 +1,18 @@
 import { FC } from "react";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
-interface GMessage{
-    gmid: number,
-    uid: number,
-    name: string,
-    gmessage: string
-};
-interface props {
-    gmessageArray: Array<GMessage>;
+interface GMessage {
+  gmid: number;
+  uid: number;
+  name: string;
+  gender: string;
+  gmessage: string;
+  time: string;
 }
-const Chat: FC<props> = ({gmessageArray}) => {
+interface props {
+  gmessageArray: Array<GMessage>;
+}
+const Chat: FC<props> = ({ gmessageArray }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ display: "flex", justifyContent: "center" }}></div>
@@ -41,8 +44,35 @@ const Chat: FC<props> = ({gmessageArray}) => {
                 fontWeight: "150",
               }}
             >
+              <div
+                style={
+                  e.gender == "male"
+                    ? {
+                        margin: "2px",
+                        width: "30px",
+                        height: "30px",
+                        fontSize: "20px",
+                        padding: "5px",
+                        // border: "solid 1px blue",
+                        borderRadius: "500px",
+                        backgroundColor: "lightblue",
+                      }
+                    : {
+                        margin: "0px",
+                        width: "30px",
+                        height: "30px",
+                        fontSize: "20px",
+                        padding: "5px",
+                        borderRadius: "500px",
+                        backgroundColor: "pink",
+                      }
+                }
+              >
+                {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
+              </div>
               <p
                 style={{
+                  padding: "5px",
                   color:
                     localStorage.getItem("name") == e.name
                       ? "#2bb41e"
@@ -51,13 +81,14 @@ const Chat: FC<props> = ({gmessageArray}) => {
               >
                 {localStorage.getItem("name") == e.name ? "me" : e.name}
               </p>
-              {/* <span>
-                -({e!.time[5]}
+              <span style={{ padding: "5px" }}>
+                ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]})-
-                <span style={{ fontWeight: "600" }}> {e!.data!}</span>
-              </span> */}
-                <span style={{ fontWeight: "600" }}>-{e!.gmessage!}</span>
+                <span style={{ fontWeight: "600", padding: "5px" }}>
+                  {e!.gmessage!}
+                </span>
+              </span>
             </div>
             <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
           </div>

@@ -1,15 +1,17 @@
 import { FC } from "react";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
-interface GMessage{
-    mid: number,
-    name: string,
-    data: string,
-    time: string,
-};
-interface props {
-    gmessageArray: Array<GMessage>;
+interface GMessage {
+  mid: number;
+  name: string;
+  data: string;
+  gender: string;
+  time: string;
 }
-const GlobalChat: FC<props> = ({gmessageArray}) => {
+interface props {
+  gmessageArray: Array<GMessage>;
+}
+const GlobalChat: FC<props> = ({ gmessageArray }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ display: "flex", justifyContent: "center" }}></div>
@@ -41,8 +43,35 @@ const GlobalChat: FC<props> = ({gmessageArray}) => {
                 fontWeight: "150",
               }}
             >
+              <div
+                style={
+                  e.gender != "male"
+                    ? {
+                        margin: "2px",
+                        width: "30px",
+                        height: "30px",
+                        fontSize: "20px",
+                        padding: "5px",
+                        // border: "solid 1px blue",
+                        borderRadius: "500px",
+                        backgroundColor: "lightblue",
+                      }
+                    : {
+                        margin: "0px",
+                        width: "30px",
+                        height: "30px",
+                        fontSize: "20px",
+                        padding: "5px",
+                        borderRadius: "500px",
+                        backgroundColor: "pink",
+                      }
+                }
+              >
+                {e.gender != "male" ? <BsGenderMale /> : <BsGenderFemale />}
+              </div>
               <p
                 style={{
+                  padding: "5px",
                   color:
                     localStorage.getItem("name") == e.name
                       ? "#2bb41e"
@@ -51,8 +80,8 @@ const GlobalChat: FC<props> = ({gmessageArray}) => {
               >
                 {localStorage.getItem("name") == e.name ? "me" : e.name}
               </p>
-              <span>
-                -({e!.time[5]}
+              <span style={{ padding: "5px" }}>
+                ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]})-
                 <span style={{ fontWeight: "600" }}> {e!.data!}</span>

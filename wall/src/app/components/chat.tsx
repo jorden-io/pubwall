@@ -30,7 +30,17 @@ const Chat: FC<props> = ({ gmessageArray }) => {
         }}
       >
         {gmessageArray.map((e: GMessage) => (
-          <div key={e.gmid}>
+          <div
+            style={{
+              animation: "fadein 0.5s ease-out",
+              display: "flex",
+              justifyContent:
+                localStorage.getItem("name") == e.name
+                  ? "flex-end"
+                  : "flex-start",
+            }}
+            key={e.gmid}
+          >
             <div
               onClick={() => {
                 document
@@ -42,6 +52,13 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                 display: "flex",
                 padding: "10px",
                 fontWeight: "150",
+                boxShadow: "0px 0px 6px black",
+                borderRadius:
+                  localStorage.getItem("name") == e.name
+                    ? "25px 25px 0px 25px "
+                    : " 25px 25px 25px 0px",
+                backgroundColor: "rgb(30 30 30)",
+                margin: "10px",
               }}
             >
               <div
@@ -75,22 +92,21 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                   padding: "5px",
                   color:
                     localStorage.getItem("name") == e.name
-                      ? "#2bb41e"
+                      ? "grey"
                       : "white",
                 }}
               >
                 {localStorage.getItem("name") == e.name ? "me" : e.name}
               </p>
               <span style={{ padding: "5px" }}>
-                ({e!.time[5]}
+                {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
-                {e!.time[9]})-
+                {e!.time[9]})- */}
                 <span style={{ fontWeight: "600", padding: "5px" }}>
                   {e!.gmessage!}
                 </span>
               </span>
             </div>
-            <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr>
           </div>
         ))}
         <p id="hiddenp"></p>

@@ -65,7 +65,7 @@ const CreateGroup: FC = () => {
             padding: "12px",
             border: "none",
             borderRadius: "5px",
-            backgroundColor: "green",
+            backgroundColor: "rgb(100 120 100)",
             color: "white",
           }}
           onClick={() => {

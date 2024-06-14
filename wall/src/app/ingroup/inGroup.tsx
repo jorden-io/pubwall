@@ -1,4 +1,3 @@
-
 "use client";
 import { FC, useEffect, useState } from "react";
 import Nav from "../components/nav";
@@ -13,7 +12,7 @@ interface props {
 let time = 0;
 let currentlyRunning = false;
 let threeTries = 0;
-const InGroup: FC<props> = ({description, gid, groupname, name}) => {
+const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
   interface token {
     uid: number;
   }
@@ -88,15 +87,16 @@ const InGroup: FC<props> = ({description, gid, groupname, name}) => {
   return (
     <div>
       <Nav title={`${groupname}`} />
-      <div style={{display: "flex", justifyContent: "center"}}>
-      <p> <span style={{fontWeight: "100"}}>{`creator - `}</span> <span style={{color: "orange"}}>{name}</span></p>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+
+        <p>
+          {" "}
+          <span style={{ fontWeight: "100" }}>{`creator - `}</span>{" "}
+          <span style={{ color: "orange" }}>{name}</span>
+        </p>
       </div>
       <Chat gmessageArray={messages} />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ width: "1000px" }}>
-          <p style={{textAlign: "center", fontWeight: "100"}}>{`creator says:`}</p>
-          <p style={{textAlign: "center"}}>{description}</p>
-        </div>
       </div>
       <div
         style={{

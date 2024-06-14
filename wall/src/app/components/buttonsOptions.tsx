@@ -16,11 +16,11 @@ const ButtonOptions: FC<props> = () => {
               width: "100%",
               padding: "15px",
               border: "none",
-              backgroundColor: "#2bb41e",
+              backgroundColor: "rgb(100 120 100)",
               color: "white",
             }}
           >
-            create group
+            my groups
           </button>
           <button
             style={{
@@ -28,7 +28,7 @@ const ButtonOptions: FC<props> = () => {
               borderRadius: "5px",
               width: "100%",
               border: "none",
-              backgroundColor: "#2bb41e",
+              backgroundColor: "rgb(100 120 100)",
               color: "white",
             }}
           >
@@ -45,7 +45,7 @@ const ButtonOptions: FC<props> = () => {
               width: "100%",
               padding: "10px",
               border: "none",
-              backgroundColor: "orange",
+              backgroundColor: "rgb(90 90 90)",
               color: "white",
             }}
           >

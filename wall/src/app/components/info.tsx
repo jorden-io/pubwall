@@ -29,7 +29,7 @@ const Info: FC<props> = () => {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <IoClose
               style={{
-                color: "orange",
+                color: "rgb(100 120 100)",
                 fontSize: "40px",
                 marginBottom: "20px",
                 marginTop: "20px",
@@ -39,7 +39,9 @@ const Info: FC<props> = () => {
               }}
             />
           </div>
-          <hr style={{ border: "solid 1px grey" }}></hr>
+          <div style={{display: "flex", justifyContent: "center"}}>
+          <hr style={{ border: "solid 1px grey", borderRadius: "100px", width: "85%" }}></hr>
+          </div>
           <Link
             onClick={() => {
               setTimeout(() => {
@@ -56,8 +58,27 @@ const Info: FC<props> = () => {
                 justifyContent: "center",
               }}
             >
-              groups
+              global groups
             </h2>
+          <Link
+            onClick={() => {
+              setTimeout(() => {
+                document.getElementById("info")!.style.display = "none";
+              }, 300);
+            }}
+            href={"/groups"}
+          >
+            <h2
+              style={{
+                marginTop: "20px",
+                fontWeight: "100",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              my groups
+            </h2>
+          </Link>
           </Link>
         </div>
       </div>

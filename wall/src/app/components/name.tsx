@@ -33,7 +33,7 @@ const EnterName: FC<props> = () => {
           display: "flex",
           justifyContent: "center",
           fontWeight: "100",
-          margin: "10px",
+          marginTop: "20px",
         }}
       >
         {" "}
@@ -43,7 +43,7 @@ const EnterName: FC<props> = () => {
       </h1>
       <div
         style={{
-          marginTop: "50px",
+          marginTop: "30px",
           display: "flex",
           justifyContent: "center",
         }}
@@ -51,9 +51,10 @@ const EnterName: FC<props> = () => {
         <div
           style={{
             backgroundColor: "rgb(15 15 15)",
-            border: "solid 2px #2bb41e",
-            borderRadius: "10px",
-            padding: "80px",
+            // border: "solid 2px #2bb41e",
+            boxShadow: "0px 0px 8px black",
+            borderRadius: "5px",
+            padding: "60px",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
@@ -78,7 +79,7 @@ const EnterName: FC<props> = () => {
               style={{
                 width: "100%",
                 backgroundColor: "pink",
-                border: "solid 1px grey",
+                boxShadow: gender == "female" ? "0px 0px 8px pink" : "none",
                 borderRadius: "5px",
                 padding: "5px",
                 fontSize: "40px",
@@ -91,8 +92,9 @@ const EnterName: FC<props> = () => {
               }}
               style={{
                 width: "100%",
+                boxShadow: gender == "male" ? "0px 0px 8px lightblue" : "none",
                 backgroundColor: "lightblue",
-                border: "solid 1px grey",
+                border: "none",
                 borderRadius: "5px",
                 padding: "5px",
                 fontSize: "40px",
@@ -106,7 +108,7 @@ const EnterName: FC<props> = () => {
               borderRadius: "10px",
               fontSize: "16px",
               textAlign: "center",
-              border: "solid 2px orange",
+              border: "solid 2px rgb(100 120 100)",
               padding: "15px",
               margin: "5px",
               backgroundColor: "rgb(40 40 40)",

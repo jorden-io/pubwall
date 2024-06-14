@@ -4,7 +4,6 @@ import Nav from "../components/nav";
 import { decode } from "jsonwebtoken";
 import CreateGroup from "../components/createGroup";
 import InGroup from "../ingroup/inGroup";
-import EnterName from "../components/name";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 let t = 0;
@@ -58,15 +57,16 @@ export default function Comp() {
                 style={{
                   border: "none",
                   fontWeight: "100",
+                  fontSize: "20px",
                   borderRadius: "5px",
                   padding: "10px",
                   margin: "10px",
-                  backgroundColor: "orange",
+                  backgroundColor: "rgb(100 110 100)",
                   color: "white",
                 }}
               >
                 {" "}
-                close info
+                close
               </button>
               <h1
                 style={{
@@ -138,29 +138,60 @@ export default function Comp() {
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   {groupMembers.map((m: any) => (
                     <div
-                    key={m.gid}
+                      key={m.gid}
                       style={{
                         margin: "20px",
-                        border: "solid 1px grey",
+                        border: "solid 1px rgb(100 110 100)",
                         width: "100%",
                         textAlign: "center",
                         padding: "15px",
                         borderRadius: "5px",
                         display: "flex",
                         justifyContent: "center",
-                        gap: "20px"
+                        gap: "20px",
                       }}
                     >
-                        {m.gender == "male" ? (
-                          <BsGenderMale style={{margin: '10px', fontSize: "23px",}} />
-                        ) : (
-                          <BsGenderFemale />
-                        )}
-                      <p style={{ fontSize: "30px", fontWeight: "100", marginLeft: "20px",}}>{m.name}</p>
+                      {m.gender == "male" ? (
+                        <BsGenderMale
+                          style={{ margin: "10px", fontSize: "23px" }}
+                        />
+                      ) : (
+                        <BsGenderFemale />
+                      )}
+                      <p
+                        style={{
+                          fontSize: "30px",
+                          fontWeight: "100",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {m.name}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
+              <button
+                onClick={() => {
+                  // setGroupNumber(e.gid);
+                  // setGroupName(e.groupname);
+                  // setCreator(e.name);
+                  // setDescription(e.description);
+                  setInGroup(true);
+                  setShowInfo(false);
+                }}
+                style={{
+                  padding: "10px",
+                  margin: "10px",
+                  borderRadius: "5px",
+                  border: "none",
+                  color: "white",
+                  fontSize: "20px",
+                  backgroundColor: "#2bb41e",
+                }}
+              >
+                join
+              </button>
 
               {/* <div style={{backgroundColor: "black", margin: "10px", borderRadius: "5px", padding: "10px"}}>
                 <h2 style={{display: "flex", justifyContent: "center", fontWeight: "100", margin: "10px"}}>members</h2>
@@ -214,7 +245,7 @@ export default function Comp() {
             <button
               style={{
                 borderRadius: "5px",
-                backgroundColor: "orange",
+                backgroundColor: "rgb(100 120 100)",
                 width: "100%",
                 padding: "10px",
                 color: "white",
@@ -232,6 +263,24 @@ export default function Comp() {
           name={creator}
           description={gdescription}
         />
+        <div style={{ margin: "5px" }}>
+          <button
+            onClick={() => {
+              setInGroup(false);
+              setShowInfo(true);
+            }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "none",
+              color: "white",
+              backgroundColor: "orange",
+              borderRadius: "5px",
+            }}
+          >
+            view group info
+          </button>
+        </div>
       </>
     );
   }
@@ -254,7 +303,7 @@ export default function Comp() {
               <div
                 key={e.gid}
                 style={{
-                  backgroundColor: "#2bb41e",
+                  backgroundColor: "#2bb4e",
                   display: "flex",
                   justifyContent: "center",
                   margin: "5px",
@@ -293,14 +342,22 @@ export default function Comp() {
                   style={{
                     display: "flex",
                     padding: "10px",
-                    backgroundColor: "#2bb41e",
-                    margin: "5px",
+                    backgroundColor: "rgb(80 80 80)",
+                    boxShadow: "0px 0px 5px black",
+                    margin: "10px",
                     borderRadius: "5px",
                   }}
                 >
                   {" "}
-                  <p style={{ width: "100%", padding: "10px" }}>
-                    {e.name} - ({e.groupname}){" "}
+                  <p
+                    style={{
+                      width: "100%",
+                      padding: "10px",
+                      fontWeight: "100",
+                      fontSize: "20px",
+                    }}
+                  >
+                    {e.groupname}
                   </p>{" "}
                   <button
                     onClick={() => {
@@ -314,13 +371,13 @@ export default function Comp() {
                     style={{
                       width: "50%",
                       padding: "10px",
-                      backgroundColor: "rgb(60 60 60)",
-                      fontWeight: "1000",
+                      backgroundColor: "rgb(40 40 40)",
+                      fontWeight: "100",
                       fontSize: "16px",
                       color: "white",
                       border: "none",
-                      borderRadius: "8px 0px 0px 8px",
-                      marginRight: "3px",
+                      borderRadius: "5px 0px 0px 5px",
+                      marginRight: "0px",
                     }}
                   >
                     info
@@ -337,12 +394,12 @@ export default function Comp() {
                     style={{
                       width: "50%",
                       padding: "10px",
-                      backgroundColor: "darkgreen",
-                      fontWeight: "1000",
+                      backgroundColor: "rgb(100 120 100)",
+                      fontWeight: "100",
                       fontSize: "16px",
                       color: "white",
                       border: "none",
-                      borderRadius: "0px 8px 8px 0px",
+                      borderRadius: "0px 5px 5px 0px",
                     }}
                   >
                     join

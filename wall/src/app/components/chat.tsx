@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { decode } from "jsonwebtoken";
 
 interface GMessage {
   gmid: number;
@@ -13,6 +14,18 @@ interface props {
   gmessageArray: Array<GMessage>;
 }
 const Chat: FC<props> = ({ gmessageArray }) => {
+  const createConvo = async (suid: number) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    interface token {
+      uid: number;
+    }
+    const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
+    const body = { suid: suid, ruid: id };
+    await fetch(
+      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createconvo", {method: "POST", headers: myHeaders, body: JSON.stringify(body)}
+    );
+  };
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ display: "flex", justifyContent: "center" }}></div>
@@ -88,14 +101,20 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                 {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
               </div>
               <p
+                onClick={() => {
+                  createConvo(e.uid!);
+                }}
                 style={{
                   fontWeight: "600",
                   padding: "5px",
                   color:
-                    localStorage.getItem("name") == e.name ? "grey" : "rgb(200 200 200)",
+                    localStorage.getItem("name") == e.name
+                      ? "grey"
+                      : "rgb(200 200 200)",
                 }}
               >
-                {localStorage.getItem("name") == e.name ? "me" : e.name}:
+                {e.uid} {localStorage.getItem("name") == e.name ? "me" : e.name}
+                :
               </p>
               <span style={{ padding: "5px" }}>
                 {/* ({e!.time[5]}

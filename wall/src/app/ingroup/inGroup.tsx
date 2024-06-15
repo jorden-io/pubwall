@@ -130,7 +130,8 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
             padding: "20px",
             border: "none",
             borderRadius: "5px",
-            backgroundColor: "#2bb41e",
+            backgroundColor: "lightseagreen",
+            // backgroundColor: "#2bb41e",
             fontSize: "16px",
             margin: "10px",
           }}

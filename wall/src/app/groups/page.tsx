@@ -332,7 +332,7 @@ export default function Comp() {
             <div
               style={{
                 backgroundColor: "rgb(40 40 40)",
-                height: "200px",
+                height: "400px",
                 overflowY: "scroll",
                 width: "100%",
               }}

@@ -89,20 +89,19 @@ const Chat: FC<props> = ({ gmessageArray }) => {
               </div>
               <p
                 style={{
+                  fontWeight: "600",
                   padding: "5px",
                   color:
-                    localStorage.getItem("name") == e.name
-                      ? "grey"
-                      : "white",
+                    localStorage.getItem("name") == e.name ? "grey" : "rgb(200 200 200)",
                 }}
               >
-                {localStorage.getItem("name") == e.name ? "me" : e.name}
+                {localStorage.getItem("name") == e.name ? "me" : e.name}:
               </p>
               <span style={{ padding: "5px" }}>
                 {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]})- */}
-                <span style={{ fontWeight: "600", padding: "5px" }}>
+                <span style={{ fontWeight: "100", padding: "5px" }}>
                   {e!.gmessage!}
                 </span>
               </span>

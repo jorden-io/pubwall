@@ -61,7 +61,7 @@ export default function Comp() {
                   borderRadius: "5px",
                   padding: "10px",
                   margin: "10px",
-                  backgroundColor: "rgb(100 110 100)",
+                  backgroundColor: "grey",
                   color: "white",
                 }}
               >
@@ -80,7 +80,7 @@ export default function Comp() {
               <p style={{ textAlign: "center", fontWeight: "100" }}>
                 {" "}
                 creator-
-                <span style={{ fontWeight: "400", color: "orange" }}>
+                <span style={{ fontWeight: "400", color: "lightseagreen" }}>
                   {creator}
                 </span>
               </p>
@@ -110,7 +110,7 @@ export default function Comp() {
               <div
                 style={{
                   backgroundColor: "rgb(20 20 20)",
-                  height: "300px",
+                  height: "220px",
                   overflowY: "scroll",
                   margin: "10px",
                   borderRadius: "5px",
@@ -141,7 +141,7 @@ export default function Comp() {
                       key={m.gid}
                       style={{
                         margin: "20px",
-                        border: "solid 1px rgb(100 110 100)",
+                        border: "none",
                         width: "100%",
                         textAlign: "center",
                         padding: "15px",
@@ -187,7 +187,8 @@ export default function Comp() {
                   border: "none",
                   color: "white",
                   fontSize: "20px",
-                  backgroundColor: "#2bb41e",
+                  backgroundColor: "lightseagreen",
+                  // backgroundColor: "#2bb41e",
                 }}
               >
                 join
@@ -245,7 +246,7 @@ export default function Comp() {
             <button
               style={{
                 borderRadius: "5px",
-                backgroundColor: "rgb(100 120 100)",
+                backgroundColor: "grey",
                 width: "100%",
                 padding: "10px",
                 color: "white",
@@ -274,7 +275,7 @@ export default function Comp() {
               padding: "10px",
               border: "none",
               color: "white",
-              backgroundColor: "orange",
+              backgroundColor: "lightseagreen",
               borderRadius: "5px",
             }}
           >
@@ -394,7 +395,7 @@ export default function Comp() {
                     style={{
                       width: "50%",
                       padding: "10px",
-                      backgroundColor: "rgb(100 120 100)",
+                      backgroundColor: "lightseagreen",
                       fontWeight: "100",
                       fontSize: "16px",
                       color: "white",

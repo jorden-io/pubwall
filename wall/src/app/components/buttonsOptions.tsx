@@ -16,7 +16,7 @@ const ButtonOptions: FC<props> = () => {
               width: "100%",
               padding: "15px",
               border: "none",
-              backgroundColor: "rgb(100 120 100)",
+              backgroundColor: "lightseagreen",
               color: "white",
             }}
           >
@@ -28,7 +28,7 @@ const ButtonOptions: FC<props> = () => {
               borderRadius: "5px",
               width: "100%",
               border: "none",
-              backgroundColor: "rgb(100 120 100)",
+              backgroundColor: "lightseagreen",
               color: "white",
             }}
           >

@@ -76,15 +76,15 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
               </div>
               <p
                 style={{
-                  fontWeight: "400",
+                  fontWeight: "600",
                   padding: "5px",
                   color:
                     localStorage.getItem("name") == e.name
                       ? "grey"
-                      : "white",
+                      : "rgb(200 200 200)",
                 }}
               >
-                {localStorage.getItem("name") == e.name ? "me" : e.name}
+                {localStorage.getItem("name") == e.name ? "me" : e.name}:
               </p>
               <span style={{ padding: "5px", fontWeight: "500" }}>
                 {/* ({e!.time[5]}

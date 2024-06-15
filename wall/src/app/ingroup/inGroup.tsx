@@ -92,7 +92,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
         <p>
           {" "}
           <span style={{ fontWeight: "100" }}>{`creator - `}</span>{" "}
-          <span style={{ color: "orange" }}>{name}</span>
+          <span style={{ color: "lightseagreen" }}>{name}</span>
         </p>
       </div>
       <Chat gmessageArray={messages} />

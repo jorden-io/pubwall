@@ -134,7 +134,7 @@ export default function Home() {
           }}
         >
           speaking as-{" "}
-          <span style={{ color: "orange" }}>
+          <span style={{ color: "lightseagreen" }}>
             {" "}
             {localStorage.getItem("name")}
           </span>
@@ -171,7 +171,7 @@ export default function Home() {
               padding: "20px",
               border: "none",
               borderRadius: "5px",
-              backgroundColor: "#2bb41e",
+              backgroundColor: "lightseagreen",
               fontSize: "16px",
               margin: "10px",
             }}

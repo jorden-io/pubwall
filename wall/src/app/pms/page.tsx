@@ -4,15 +4,12 @@ import { decode } from "jsonwebtoken";
 import { RSCPathnameNormalizer } from "next/dist/server/future/normalizers/request/rsc";
 import Nav from "../components/nav";
 import InPm from "./inPm";
-interface Props {
-  name: string;
-}
 interface C {
   pcmid: number;
   suid: number;
   ruid: number;
 }
-const Comp: FC<Props> = () => {
+const Comp = () => {
   const [conversations, setConversations] = useState([]);
   const [suid, setSuid] = useState<number>();
   const [inPm, setInPm] = useState<boolean>(false);

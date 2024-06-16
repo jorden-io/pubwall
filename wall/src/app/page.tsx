@@ -55,12 +55,12 @@ export default function Home() {
         });
         time += 5;
         console.log(time);
-        if (time >= 20) {
+        if (time >= 35) {
           clearInterval(pollingInterval);
           time = 0;
           currentlyRunning = false;
         }
-      }, 4000);
+      }, 3000);
     }
   };
 

@@ -7,6 +7,9 @@ interface Props {
   suid: number;
   name: string;
 }
+let time = 0;
+let currentlyRunning = false;
+let threeTries = 0;
 const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   const [pms, setPms] = useState([]);
   const [message, setMessage] = useState("");
@@ -16,12 +19,43 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
+  const fetchMessages = async () => {
+    const body = { suid: suid, ruid: id };
+    const res = await fetch(
+      `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
+      { method: "POST", body: JSON.stringify(body), headers: myHeaders }
+    );
+    const pm = await res.json();
+    setPms(pm);
+  };
   const subPMessage = async (message: string) => {
     const body = { pcmid: pcmid, suid: id, ruid: suid, message: message };
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/sendpm",
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
     );
+    fetchMessages().then(() => {
+      document
+        .getElementById("hiddenp")
+        ?.scrollIntoView({ behavior: "smooth" });
+    });
+    if (currentlyRunning === false) {
+      currentlyRunning = true;
+      const pollingInterval = setInterval(() => {
+        fetchMessages().then(() => {
+          document
+            .getElementById("hiddenp")
+            ?.scrollIntoView({ behavior: "smooth" });
+        });
+        time += 5;
+        console.log(time);
+        if (time >= 35) {
+          clearInterval(pollingInterval);
+          time = 0;
+          currentlyRunning = false;
+        }
+      }, 3000);
+    }
   };
   useEffect(() => {
     const body = { suid: suid, ruid: id };
@@ -31,8 +65,19 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
         { method: "POST", body: JSON.stringify(body), headers: myHeaders }
       );
       const pm = await res.json();
-      console.log(pm);
       setPms(pm);
+      setInterval(() => {
+        if (threeTries <= 4) {
+          if (!currentlyRunning) {
+            console.log("from 20");
+            fetchMessages();
+            document
+              .getElementById("hiddenp")
+              ?.scrollIntoView({ behavior: "smooth" });
+            threeTries += 1;
+          }
+        }
+      }, 20000);
     })();
   }, [suid]);
   return (
@@ -115,17 +160,14 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                     style={{
                       fontWeight: "600",
                       padding: "5px",
-                      color:
-                      id != e.ruid 
-                          ? "grey"
-                          : "rgb(200 200 200)",
+                      color: id != e.ruid ? "grey" : "rgb(200 200 200)",
                     }}
                   >
                     {/* {e.suid}{" "} */}
                     {localStorage.getItem("name") == e.name ? "me" : e.name}
                   </p>
                   <span style={{ padding: "5px" }}>
-                {id != e.ruid ?  "me": name}:
+                    {id != e.ruid ? "me" : name}:
                     {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]})- */}
@@ -138,55 +180,55 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
             ))}
             <p id="hiddenp"></p>
           </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            bottom: "0px",
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              bottom: "0px",
 
-            position: "fixed",
-            width: "100%",
-          }}
-        >
-          <input
-            id="minput"
-            placeholder="input . . ."
-            style={{
-              color: "white",
-              fontSize: "16px",
+              position: "fixed",
               width: "100%",
-              padding: "20px",
-              border: "none",
-              backgroundColor: "rgb(40 40 40)",
-              borderRadius: "5px",
-              margin: "10px",
-            }}
-            onClick={(e) => e.preventDefault()}
-            onChange={(e) => setMessage(e.target.value)}
-          ></input>
-          <button
-            style={{
-              color: "white",
-              width: "20%",
-              padding: "20px",
-              border: "none",
-              borderRadius: "5px",
-              backgroundColor: "lightseagreen",
-              fontSize: "16px",
-              margin: "10px",
-            }}
-            onClick={() => {
-              setMessage("");
-              (document.getElementById("minput") as HTMLInputElement).value =
-                "";
-              if (message.length > 1) {
-                subPMessage(message);
-              }
             }}
           >
-            send
-          </button>
-        </div>
+            <input
+              id="minput"
+              placeholder="input . . ."
+              style={{
+                color: "white",
+                fontSize: "16px",
+                width: "100%",
+                padding: "20px",
+                border: "none",
+                backgroundColor: "rgb(40 40 40)",
+                borderRadius: "5px",
+                margin: "10px",
+              }}
+              onClick={(e) => e.preventDefault()}
+              onChange={(e) => setMessage(e.target.value)}
+            ></input>
+            <button
+              style={{
+                color: "white",
+                width: "20%",
+                padding: "20px",
+                border: "none",
+                borderRadius: "5px",
+                backgroundColor: "lightseagreen",
+                fontSize: "16px",
+                margin: "10px",
+              }}
+              onClick={() => {
+                setMessage("");
+                (document.getElementById("minput") as HTMLInputElement).value =
+                  "";
+                if (message.length > 1) {
+                  subPMessage(message);
+                }
+              }}
+            >
+              send
+            </button>
+          </div>
         </div>
         {/* <div>
           {pms.map((pm: any) => (

@@ -97,7 +97,7 @@ const Comp = () => {
                   {
                     <FaUser
                       style={{
-                        color: "lightseagreen",
+                        color: "grey",
                         position: "relative",
                         float: "right",
                       }}

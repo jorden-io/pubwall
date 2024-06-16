@@ -166,7 +166,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                     {/* {e.suid}{" "} */}
                     {localStorage.getItem("name") == e.name ? "me" : e.name}
                   </p>
-                  <span style={{ padding: "5px" }}>
+                  <span style={{ padding: "5px",fontWeight: "600"  }}>
                     {id != e.ruid ? "me" : name}:
                     {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}

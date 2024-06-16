@@ -15,12 +15,13 @@ interface props {
   gmessageArray: Array<GMessage>;
 }
 const Chat: FC<props> = ({ gmessageArray }) => {
-  const createConvo = async (suid: number) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
     interface token {
       uid: number;
     }
+    const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
+  const createConvo = async (suid: number) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     const ruid: number = (decode(localStorage.getItem("token")!)! as token).uid;
     const body = { suid: suid, ruid: ruid };
     await fetch(
@@ -109,12 +110,14 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                   fontWeight: "600",
                   padding: "5px",
                   color:
-                    localStorage.getItem("name") == e.name
+                    // localStorage.getItem("name") == e.name
+                      id == e.uid
                       ? "grey"
                       : "rgb(200 200 200)",
                 }}
               >
-                {e.uid} {localStorage.getItem("name") == e.name ? "me" : e.name}
+                 {/* {localStorage.getItem("name") == e.name ? "me" : e.name} */}
+                 {id == e.uid ? "me" : e.name}
                 :
               </p>
               <span style={{ padding: "5px" }}>

@@ -2,9 +2,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { decode } from "jsonwebtoken";
 interface Props {
+  pcmid: number;
   suid: number;
 }
-const InPm: FC<Props> = ({ suid }) => {
+const InPm: FC<Props> = ({ pcmid, suid }) => {
   const [pms, setPms] = useState([]);
   interface token {
     uid: number;
@@ -14,11 +15,11 @@ const InPm: FC<Props> = ({ suid }) => {
   const [message, setMessage] = useState("");
     const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
   const subPMessage = async(message: string) =>{
-    const body = {suid: id, ruid: suid, message: message};
+    const body = {pcmid: pcmid, suid: id, ruid: suid, message: message};
     await fetch("https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/sendpm", {method: "POST", body: JSON.stringify(body), headers: myHeaders });
   };
   useEffect(() => {
-    const body = { suid: suid, ruid: id };
+    const body = {suid: suid, ruid: id };
     (async () => {
       const res = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,

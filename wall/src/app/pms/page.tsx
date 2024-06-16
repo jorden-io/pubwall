@@ -12,6 +12,7 @@ interface C {
 const Comp = () => {
   const [conversations, setConversations] = useState([]);
   const [suid, setSuid] = useState<number>();
+  const [pcmid, setPcmid] = useState<number>();
   const [inPm, setInPm] = useState<boolean>(false);
   useEffect(() => {
     interface token {
@@ -30,7 +31,7 @@ const Comp = () => {
     return (
       <div>
         <Nav title="messaging: " />
-        <InPm suid={suid!} />
+        <InPm suid={suid!} pcmid={pcmid!}  />
       </div>
     );
   } else {
@@ -44,6 +45,7 @@ const Comp = () => {
                 key={c.pcmid}
                 onClick={() => {
                   setSuid(c.suid!);
+                  setPcmid(c.pcmid!);
                   setInPm(true);
                 }}
               >

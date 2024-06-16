@@ -20,8 +20,8 @@ const Chat: FC<props> = ({ gmessageArray }) => {
     interface token {
       uid: number;
     }
-    const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
-    const body = { suid: suid, ruid: id };
+    const ruid: number = (decode(localStorage.getItem("token")!)! as token).uid;
+    const body = { suid: suid, ruid: ruid };
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createconvo", {method: "POST", headers: myHeaders, body: JSON.stringify(body)}
     );

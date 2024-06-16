@@ -65,7 +65,7 @@ const EnterName: FC<props> = () => {
           <h1 style={{ textAlign: "center", fontWeight: "100" }}>
             enter a name
           </h1>
-          <p style={{ textAlign: "center", margin: "5px", fontWeight: "100" }}>
+          <p style={{ textAlign: "center", margin: "5px", fontWeight: "100", color: "whitesmoke" }}>
             {" "}
             and select a gender
           </p>
@@ -105,10 +105,10 @@ const EnterName: FC<props> = () => {
           <input
             style={{
               color: "white",
-              borderRadius: "10px",
+              borderRadius: "5px",
               fontSize: "16px",
               textAlign: "center",
-              border: "solid 2px rgb(100 120 100)",
+              border: "solid 2px lightseagreen",
               padding: "15px",
               margin: "5px",
               backgroundColor: "rgb(40 40 40)",
@@ -120,10 +120,10 @@ const EnterName: FC<props> = () => {
           ></input>
           <button
             style={{
-              borderRadius: "10px",
+              borderRadius: "5px",
               padding: "10px",
               margin: "5px",
-              backgroundColor: "#2bb41e",
+              backgroundColor: "lightseagreen",
               color: "whitesmoke",
               border: "none",
             }}
@@ -138,7 +138,7 @@ const EnterName: FC<props> = () => {
             style={{
               textAlign: "center",
               borderRadius: "0px",
-              color: "orange",
+              color: "grey",
               fontWeight: "1000",
             }}
           >

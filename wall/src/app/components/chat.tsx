@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { decode } from "jsonwebtoken";
+import {redirect} from "next/navigation"
 
 interface GMessage {
   gmid: number;

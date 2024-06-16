@@ -4,6 +4,7 @@ import { decode } from "jsonwebtoken";
 import { RSCPathnameNormalizer } from "next/dist/server/future/normalizers/request/rsc";
 import Nav from "../components/nav";
 import InPm from "./inPm";
+import { FaTrash, FaUser } from "react-icons/fa";
 interface C {
   pcmid: number;
   suid: number;
@@ -14,6 +15,7 @@ const Comp = () => {
   const [suid, setSuid] = useState<number>();
   const [pcmid, setPcmid] = useState<number>();
   const [inPm, setInPm] = useState<boolean>(false);
+  const [name, setName] = useState<string>();
   useEffect(() => {
     interface token {
       uid: number;
@@ -34,8 +36,27 @@ const Comp = () => {
   if (inPm) {
     return (
       <div>
-        <Nav title="messaging: " />
-        <InPm suid={suid!} pcmid={pcmid!} />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "1000px", margin: "5px" }}>
+            <button
+              onClick={() => {
+                setInPm(false);
+              }}
+              style={{
+                width: "100%",
+                padding: "10px",
+                color: "white",
+                backgroundColor: "grey",
+                border: "none",
+                borderRadius: "5px",
+              }}
+            >
+              exit
+            </button>
+          </div>
+        </div>
+        <Nav title={` ${name} `} />
+        <InPm suid={suid!} pcmid={pcmid!} name={name!} />
       </div>
     );
   } else {
@@ -46,14 +67,43 @@ const Comp = () => {
           <div>
             {conversations.map((c: any) => (
               <div
+                style={{
+                  boxShadow: "0px 0px 4px black",
+                  backgroundColor: "rgb(42 42 42)",
+                  margin: "20px",
+                  padding: "10px",
+                  borderRadius: "5px",
+                }}
                 key={c.pcmid}
                 onClick={() => {
                   setSuid(c.suid!);
                   setPcmid(c.pcmid!);
+                  setName(c.name!);
                   setInPm(true);
                 }}
               >
-                from {c.name!} - {c.suid!}
+                <p style={{ fontWeight: "100" }}>
+                  {c.name!}{" "}
+                  {
+                    <FaTrash
+                      style={{
+                        marginLeft: "20px",
+                        color: "lightseagreen",
+                        position: "relative",
+                        float: "right",
+                      }}
+                    />
+                  }
+                  {
+                    <FaUser
+                      style={{
+                        color: "lightseagreen",
+                        position: "relative",
+                        float: "right",
+                      }}
+                    />
+                  }
+                </p>
               </div>
             ))}
           </div>

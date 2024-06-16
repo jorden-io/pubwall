@@ -26,10 +26,15 @@ const Info: FC<props> = () => {
             flexDirection: "column",
           }}
         >
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center", margin: "8px" }}>
             <IoClose
               style={{
                 color: "lightseagreen",
+                border: "none",
+                boxShadow: "0px 0px 6px black",
+                backgroundColor: "rgb( 30 30 30)",
+                width: "85%",
+                borderRadius: "5px",
                 fontSize: "40px",
                 marginBottom: "20px",
                 marginTop: "20px",
@@ -96,7 +101,7 @@ const Info: FC<props> = () => {
                 justifyContent: "center",
               }}
             >
-             private messages 
+             private chats
             </h2>
           </Link>
         </div>

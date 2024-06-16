@@ -184,10 +184,13 @@ export default function Comp() {
                   padding: "10px",
                   margin: "10px",
                   borderRadius: "5px",
-                  border: "none",
+                  // border: "none",
                   color: "white",
                   fontSize: "20px",
-                  backgroundColor: "lightseagreen",
+                  // backgroundColor: "lightseagreen",
+                  backgroundColor: "indigo",
+                  boxShadow: "inset 0px 0px 30px cyan",
+                  border: "solid 1px lightseagreen",
                   // backgroundColor: "#2bb41e",
                 }}
               >
@@ -297,7 +300,7 @@ export default function Comp() {
   } else {
     return (
       <div>
-        <Nav title="Groups" />
+        <Nav title="global groups" />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ width: "80%" }}>
             {groups!.map((e: any) => (
@@ -327,7 +330,7 @@ export default function Comp() {
                 marginBottom: "15px",
               }}
             >
-              global groups
+              {/* global groups */}
             </h2>
             <div
               style={{
@@ -395,6 +398,7 @@ export default function Comp() {
                     style={{
                       width: "50%",
                       padding: "10px",
+                      // backgroundColor: "grey",
                       backgroundColor: "lightseagreen",
                       fontWeight: "100",
                       fontSize: "16px",

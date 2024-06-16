@@ -60,6 +60,7 @@ const Info: FC<props> = () => {
             >
               global groups
             </h2>
+          </Link>
           <Link
             onClick={() => {
               setTimeout(() => {
@@ -79,6 +80,24 @@ const Info: FC<props> = () => {
               my groups
             </h2>
           </Link>
+          <Link
+            onClick={() => {
+              setTimeout(() => {
+                document.getElementById("info")!.style.display = "none";
+              }, 300);
+            }}
+            href={"/pms"}
+          >
+            <h2
+              style={{
+                marginTop: "20px",
+                fontWeight: "100",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+             private messages 
+            </h2>
           </Link>
         </div>
       </div>

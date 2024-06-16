@@ -20,8 +20,12 @@ const Comp = () => {
     }
     const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
     (async () => {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const body = { token: localStorage.getItem("token") };
       const res = await fetch(
-        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/myconversations/${id}`
+        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/myconversations/${id}`,
+        { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
       );
       const convos = await res.json();
       setConversations(convos);
@@ -31,7 +35,7 @@ const Comp = () => {
     return (
       <div>
         <Nav title="messaging: " />
-        <InPm suid={suid!} pcmid={pcmid!}  />
+        <InPm suid={suid!} pcmid={pcmid!} />
       </div>
     );
   } else {
@@ -49,7 +53,7 @@ const Comp = () => {
                   setInPm(true);
                 }}
               >
-               {c.suid!}
+                from {c.name!} - {c.suid!}
               </div>
             ))}
           </div>

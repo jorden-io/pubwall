@@ -32,13 +32,16 @@ export default function RootLayout({
       if (localStorage.getItem("token")) {
         const t: string = localStorage.getItem("token")!;
         if (verify(t!, "bia")) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+          const body = {token: localStorage.getItem("token")};
           const res = await fetch(
             `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/userinfo/${
               (decode(t) as token).uid
-            }`
+            }`, {method: "POST",  headers: myHeaders, body: JSON.stringify(body)}
           );
           const user = await res.json();
-          localStorage.setItem("gender", user[0].gender)
+          localStorage.setItem("gender", user[0].gender);
           if (
             user[0].name === localStorage.getItem("name") &&
             user[0].uid === (decode(t) as token).uid

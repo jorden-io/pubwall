@@ -20,7 +20,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   myHeaders.append("Content-Type", "application/json");
   const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
   const fetchMessages = async () => {
-    const body = { suid: suid, ruid: id };
+    const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };
     const res = await fetch(
       `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
@@ -58,7 +58,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
     }
   };
   useEffect(() => {
-    const body = { suid: suid, ruid: id };
+    const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };
     (async () => {
       const res = await fetch(
         `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
@@ -105,7 +105,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                   display: "flex",
                   justifyContent: id != e.ruid ? "flex-end" : "flex-start",
                 }}
-                key={e.gmid}
+                key={e.pmid}
               >
                 <div
                   onClick={() => {
@@ -166,7 +166,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                     {/* {e.suid}{" "} */}
                     {localStorage.getItem("name") == e.name ? "me" : e.name}
                   </p>
-                  <span style={{ padding: "5px",fontWeight: "600"  }}>
+                  <span style={{ padding: "5px", fontWeight: "600" }}>
                     {id != e.ruid ? "me" : name}:
                     {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}

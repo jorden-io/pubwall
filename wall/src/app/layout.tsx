@@ -34,29 +34,33 @@ export default function RootLayout({
     (async () => {
       if (localStorage.getItem("token")) {
         const t: string = localStorage.getItem("token")!;
-        if (verify(t!, "bia")) {
-          const myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-          const body = { token: localStorage.getItem("token") };
-          const res = await fetch(
-            `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/userinfo/${
-              (decode(t) as token).uid
-            }`,
-            { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
-          );
-          const user = await res.json();
-          localStorage.setItem("gender", user[0].gender);
-          if (
-            user[0].name === localStorage.getItem("name") &&
-            user[0].uid === (decode(t) as token).uid
-          ) {
-            console.log("authenciated");
-            setAuthenticated(true);
-            setFinished(true);
+        try {
+          if (verify(t!, "bia")) {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            const body = { token: localStorage.getItem("token") };
+            const res = await fetch(
+              `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/userinfo/${
+                (decode(t) as token).uid
+              }`,
+              { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
+            );
+            const user = await res.json();
+            localStorage.setItem("gender", user[0].gender);
+            if (
+              user[0].name === localStorage.getItem("name") &&
+              user[0].uid === (decode(t) as token).uid
+            ) {
+              console.log("authenciated");
+              setAuthenticated(true);
+            }
           }
+        } catch (err){
+          setFinished(true);
+          setAuthenticated(false);
         }
       }
-            setFinished(true);
+      setFinished(true);
     })();
     setLoading(false);
   }, []);
@@ -69,8 +73,8 @@ export default function RootLayout({
         </body>
       </html>
     );
-  } 
-  if(loading || !finished) {
+  }
+  if (loading || !finished) {
     return (
       <html lang="en">
         <body className={inter.className}>
@@ -79,14 +83,14 @@ export default function RootLayout({
         </body>
       </html>
     );
- }
-  if(!authenticated && !loading && finished){
-    return(
+  }
+  if (!authenticated && !loading && finished) {
+    return (
       <html lang="en">
         <body className={inter.className}>
           <EnterName />
         </body>
       </html>
-    )
+    );
   }
 }

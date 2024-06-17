@@ -1,7 +1,6 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { decode } from "jsonwebtoken";
-import { RSCPathnameNormalizer } from "next/dist/server/future/normalizers/request/rsc";
 import Nav from "../components/nav";
 import InPm from "./inPm";
 import { FaTrash, FaUser } from "react-icons/fa";

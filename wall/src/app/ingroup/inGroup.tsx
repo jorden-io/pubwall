@@ -73,7 +73,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
     setInterval(() => {
       if (threeTries <= 4) {
         if (!currentlyRunning) {
-          console.log("from 20");
+          console.log("from g 10");
           fetchMessags().then(() => {
             document
               .getElementById("hiddenp")
@@ -82,7 +82,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
           threeTries += 1;
         }
       }
-    }, 20000);
+    }, 10000);
   }, []);
   return (
     <div>

@@ -69,7 +69,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
       setInterval(() => {
         if (threeTries <= 4) {
           if (!currentlyRunning) {
-            console.log("from 20");
+            console.log("from pm 10");
             fetchMessages();
             document
               .getElementById("hiddenp")
@@ -77,7 +77,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
             threeTries += 1;
           }
         }
-      }, 20000);
+      }, 10000);
     })();
   }, [suid]);
   return (

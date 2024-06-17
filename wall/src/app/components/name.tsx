@@ -37,8 +37,27 @@ const EnterName: FC<props> = () => {
         }}
       >
         {" "}
+        {/* <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
+        <span style={{ color: "orange" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span>
+
         <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
         <span style={{ color: "orange" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span>
+
+        <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
+        <span style={{ color: "orange" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span> */}
+        {/* <span style={{ color: "cyan" }}>Frog</span>{" "}
+        <span style={{ color: "cyan" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span>
+
+        <span style={{ color: "cyan" }}>Frog</span>{" "}
+        <span style={{ color: "cyan" }}>Chats</span>{" "}
+        <span style={{ color: "grey" }}>.com</span> */}
+
+        <span style={{ color: "cyan" }}>Frog</span>{" "}
+        <span style={{ color: "cyan" }}>Chats</span>{" "}
         <span style={{ color: "grey" }}>.com</span>
       </h1>
       <div
@@ -54,23 +73,34 @@ const EnterName: FC<props> = () => {
             // border: "solid 2px #2bb41e",
             boxShadow: "0px 0px 8px black",
             borderRadius: "5px",
-            padding: "60px",
+            padding: "30px",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
-            margin: "0px",
+            margin: "20px",
             width: "500px",
           }}
         >
           <h1 style={{ textAlign: "center", fontWeight: "100" }}>
             enter a name
           </h1>
-          <p style={{ textAlign: "center", margin: "5px", fontWeight: "100", color: "whitesmoke" }}>
+          <p
+            style={{
+              textAlign: "center",
+              margin: "5px",
+              fontWeight: "100",
+              color: "whitesmoke",
+            }}
+          >
             {" "}
             and select a gender
           </p>
           <div
-            style={{ display: "flex", justifyContent: "center", margin: "5px" }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "5px",
+            }}
           >
             <BsGenderFemale
               onClick={() => {
@@ -108,7 +138,8 @@ const EnterName: FC<props> = () => {
               borderRadius: "5px",
               fontSize: "16px",
               textAlign: "center",
-              border: "solid 2px lightseagreen",
+              // border: "solid 2px lightseagreen",
+              border: "none",
               padding: "15px",
               margin: "5px",
               backgroundColor: "rgb(40 40 40)",
@@ -124,6 +155,7 @@ const EnterName: FC<props> = () => {
               padding: "10px",
               margin: "5px",
               backgroundColor: "lightseagreen",
+              // border: "solid 1px cyan",
               color: "whitesmoke",
               border: "none",
             }}
@@ -152,7 +184,7 @@ const EnterName: FC<props> = () => {
             }}
           >
             FrogChats is for fun, anonymous, temporary chatting. Everything is
-            deleted within a week or before if you choose to log out:) have fun!{" "}
+            deleted within a week or before if you choose to log out, have fun!{" "}
           </p>
         </div>
       </div>

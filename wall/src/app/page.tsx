@@ -92,7 +92,7 @@ export default function Home() {
     setInterval(() => {
       if (threeTries <= 4) {
         if (!currentlyRunning) {
-          console.log("from 20");
+          console.log("from 10");
           fetchMessags();
           document
             .getElementById("hiddenp")
@@ -100,7 +100,7 @@ export default function Home() {
           threeTries += 1;
         }
       }
-    }, 20000);
+    }, 10000);
   }, []);
   if (loading) {
     return <Loading />;
@@ -121,7 +121,7 @@ export default function Home() {
             content="width=device-width, initial-scale=1, maximum-scale=1"
           />
         </Head>
-        <Nav title="Global FrogChats" />
+        <Nav title="global chat" />
         {/* <Info /> */}
         <ButtonOptions />
         <GlobalChat gmessageArray={state} />

@@ -267,7 +267,8 @@ export default function Comp() {
           name={creator}
           description={gdescription}
         />
-        <div style={{ margin: "5px" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ margin: "5px", width: "1000px" }}>
           <button
             onClick={() => {
               setInGroup(false);
@@ -284,6 +285,7 @@ export default function Comp() {
           >
             view group info
           </button>
+        </div>
         </div>
       </>
     );

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { decode } from "jsonwebtoken";
-import {redirect} from "next/navigation"
+import { redirect } from "next/navigation";
 
 interface GMessage {
   gmid: number;
@@ -15,17 +15,18 @@ interface props {
   gmessageArray: Array<GMessage>;
 }
 const Chat: FC<props> = ({ gmessageArray }) => {
-    interface token {
-      uid: number;
-    }
-    const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
+  interface token {
+    uid: number;
+  }
+  const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
   const createConvo = async (suid: number) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const ruid: number = (decode(localStorage.getItem("token")!)! as token).uid;
     const body = { suid: suid, ruid: ruid };
     await fetch(
-      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createconvo", {method: "POST", headers: myHeaders, body: JSON.stringify(body)}
+      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createconvo",
+      { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
     );
   };
   return (
@@ -104,21 +105,20 @@ const Chat: FC<props> = ({ gmessageArray }) => {
               </div>
               <p
                 onClick={() => {
-                  createConvo(e.uid!);
+                  createConvo(e.uid!).then(() => {
+                    window.location.href = "/pms";
+                  });
                 }}
                 style={{
                   fontWeight: "600",
                   padding: "5px",
                   color:
                     // localStorage.getItem("name") == e.name
-                      id == e.uid
-                      ? "grey"
-                      : "rgb(200 200 200)",
+                    id == e.uid ? "grey" : "rgb(200 200 200)",
                 }}
               >
-                 {/* {localStorage.getItem("name") == e.name ? "me" : e.name} */}
-                 {id == e.uid ? "me" : e.name}
-                :
+                {/* {localStorage.getItem("name") == e.name ? "me" : e.name} */}
+                {id == e.uid ? "me" : e.name}:
               </p>
               <span style={{ padding: "5px" }}>
                 {/* ({e!.time[5]}

@@ -29,7 +29,7 @@ const Info: FC<props> = () => {
           <div style={{ display: "flex", justifyContent: "center", margin: "8px" }}>
             <IoClose
               style={{
-                color: "lightseagreen",
+                color: "cyan",
                 border: "none",
                 boxShadow: "0px 0px 6px black",
                 backgroundColor: "rgb( 30 30 30)",

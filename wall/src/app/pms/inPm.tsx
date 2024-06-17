@@ -29,7 +29,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
     setPms(pm);
   };
   const subPMessage = async (message: string) => {
-    const body = { pcmid: pcmid, suid: id, ruid: suid, message: message };
+    const body = { pcmid: pcmid, suid: id, ruid: suid, message: message, token: localStorage.getItem("token") };
     await fetch(
       "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/sendpm",
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }

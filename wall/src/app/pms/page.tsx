@@ -62,8 +62,8 @@ const Comp = () => {
     return (
       <>
         <Nav title="my conversations" />
-        <div>
-          <div>
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <div style={{width: "1000px"}}>
             {conversations.map((c: any) => (
               <div
                 style={{

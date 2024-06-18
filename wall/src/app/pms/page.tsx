@@ -44,8 +44,8 @@ const Comp = () => {
               style={{
                 width: "100%",
                 padding: "10px",
-                color: "white",
-                backgroundColor: "grey",
+                color: "grey",
+                backgroundColor: "rgb( 40 40 40)",
                 border: "none",
                 borderRadius: "5px",
               }}
@@ -62,8 +62,50 @@ const Comp = () => {
     return (
       <>
         <Nav title="my conversations" />
-        <div style={{display: "flex", justifyContent: "center"}}>
-          <div style={{width: "1000px"}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ width: "1000px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "5px",
+              }}
+            >
+              <button
+                style={{
+                  width: "100%",
+                  marginRight: "5px",
+                  marginLeft: "5px",
+                  padding: "10px",
+                  // backgroundColor: "rgb( 30 30 30)",
+                  backgroundColor: "lightseagreen",
+                  border: "none",
+                  borderRadius: "5px",
+                  color: "whitesmoke",
+                }}
+              >
+                delete all
+              </button>
+              <button
+                style={{
+                  width: "100%",
+                  marginLeft: "5px",
+                  marginRight: "5px",
+                  padding: "10px",
+                  // backgroundColor: "rgb(30 30 30)",
+                  backgroundColor: "lightseagreen",
+                  border: "none",
+                  borderRadius: "5px",
+                  color: "whitesmoke",
+                }}
+              >
+                erase all
+              </button>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+
+              <input placeholder="search user . . ." style={{backgroundColor: "rgb(30 30 30)", margin: "10px", borderRadius: "5px", width: "100%", border: "none", padding: "10px"}}></input>
+            </div>
             {conversations.map((c: any) => (
               <div
                 style={{

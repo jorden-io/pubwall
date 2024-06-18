@@ -134,6 +134,7 @@ export default function Home() {
             fontSize: "1.2rem",
             display: "flex",
             justifyContent: "center",
+            margin: "10px",
             fontWeight: "100",
           }}
         >

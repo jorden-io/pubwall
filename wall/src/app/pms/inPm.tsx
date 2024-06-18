@@ -185,11 +185,31 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
               display: "flex",
               justifyContent: "center",
               bottom: "0px",
+              flexDirection: "column",
 
               position: "fixed",
               width: "100%",
             }}
           >
+
+
+          <div style={{display: "flex", justifyContent: "center"}}>
+          <hr style={{borderRadius: "100px", marginBottom: "5px", width: "95%", border: "solid 1px rgb(60 60 60)"}}></hr>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", gap: "100px" }}>
+            <p style={{fontWeight: "100"}}>chat</p>
+            <span
+              style={{
+                borderRadius: "100px",
+                height: "20px",
+                backgroundColor: "rgb(60 60 60)",
+                padding: "1px",
+              }}
+            ></span>
+            <p style={{fontWeight: "100"}}>info</p>
+          </div>
+<div style={{display: "flex", justifyContent: "center"}}>
+
             <input
               id="minput"
               placeholder="input . . ."
@@ -228,6 +248,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
             >
               send
             </button>
+</div>
           </div>
         </div>
         {/* <div>

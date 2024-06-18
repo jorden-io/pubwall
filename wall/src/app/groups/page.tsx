@@ -61,7 +61,8 @@ export default function Comp() {
                   borderRadius: "5px",
                   padding: "10px",
                   margin: "10px",
-                  backgroundColor: "grey",
+                  backgroundColor: "rgb( 60 60 60)",
+                  boxShadow: "0px 0px 5px black",
                   color: "white",
                 }}
               >
@@ -188,9 +189,8 @@ export default function Comp() {
                   color: "white",
                   fontSize: "20px",
                   // backgroundColor: "lightseagreen",
-                  backgroundColor: "indigo",
-                  boxShadow: "inset 0px 0px 30px cyan",
-                  border: "solid 1px lightseagreen",
+                  backgroundColor: "lightseagreen",
+                  border : "none"
                   // backgroundColor: "#2bb41e",
                 }}
               >
@@ -249,10 +249,10 @@ export default function Comp() {
             <button
               style={{
                 borderRadius: "5px",
-                backgroundColor: "grey",
+                backgroundColor: "rgb(40 40 40)",
+                color: "grey",
                 width: "100%",
                 padding: "10px",
-                color: "white",
                 border: "none",
               }}
               onClick={() => setInGroup(false)}
@@ -336,7 +336,8 @@ export default function Comp() {
             </h2>
             <div
               style={{
-                backgroundColor: "rgb(40 40 40)",
+                // backgroundColor: "rgb(40 40 40)",
+                    background: "linear-gradient(0.50turn, rgb(20 20 20) , rgb(5 5 5), rgb( 20 20 20) )",
                 height: "400px",
                 overflowY: "scroll",
                 width: "100%",
@@ -348,10 +349,10 @@ export default function Comp() {
                   style={{
                     display: "flex",
                     padding: "10px",
-                    backgroundColor: "rgb(80 80 80)",
+                    backgroundColor: "rgb(25 25 25)",
                     boxShadow: "0px 0px 5px black",
                     margin: "10px",
-                    borderRadius: "5px",
+                    borderRadius: "2px",
                   }}
                 >
                   {" "}

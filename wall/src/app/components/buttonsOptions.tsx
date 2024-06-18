@@ -63,7 +63,7 @@ const ButtonOptions: FC<props> = () => {
                 width: "100%",
                 padding: "10px",
                 border: "none",
-                backgroundColor: "rgb(90 90 90)",
+                backgroundColor: "rgb(50 50 50)",
                 color: "white",
               }}
             >

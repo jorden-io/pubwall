@@ -17,13 +17,13 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
       <div style={{ display: "flex", justifyContent: "center" }}></div>
       <div
         style={{
-          border: "solid 2px black",
-          background: "linear-gradient(0.50turn, rgb( 10 10 10), rgb(30 30 30), rgb( 10 10 10))",
+          border: "none",
+          // background: "linear-gradient(0.50turn, rgb( 10 10 10), rgb(30 30 30), rgb( 10 10 10))",
           width: "1000px",
-          // backgroundColor: "rgb(65 65 65)",
-          boxShadow: "inset 0px 0px 50px black",
+          backgroundColor: "rgb( 45 45 45)",
+          // boxShadow: "inset 0px 0px 50px black",
           height: "350px",
-          margin: "5px",
+          margin: "0px",
           borderRadius: "2px",
           overflowY: "scroll",
           display: "flex",

@@ -21,7 +21,7 @@ export default function Home() {
   const fetchMessags = async () => {
     try {
       const data = await fetch(
-        "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
+        "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/all/"
       );
       const res = await data.json();
       setState(res);

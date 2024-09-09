@@ -22,7 +22,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
   const fetchMessags = async () => {
     try {
       const data = await fetch(
-        `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/groupmessages/${gid}`
+        `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/groupmessages/${gid}`
       );
       const gmessages = await data.json();
       setMessages(gmessages);
@@ -36,7 +36,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
     myHeaders.append("Content-Type", "application/json");
     const body = { uid: uid, gid: gid, gmessage: gmessage };
     await fetch(
-      `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/sendgroupmessage`,
+      `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/sendgroupmessage`,
       { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
     );
     fetchMessags().then(() => {

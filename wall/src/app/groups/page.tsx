@@ -24,7 +24,7 @@ export default function Comp() {
     useEffect(() => {
       (async () => {
         const res = await fetch(
-          `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/groupmembers/${groupnumber}`
+          `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/groupmembers/${groupnumber}`
         );
         const gms = await res.json();
         setGroupMembers(gms);
@@ -235,7 +235,7 @@ export default function Comp() {
       // const groupInfo = await res.json();
       // setGroups(groupInfo);
       const gres = await fetch(
-        `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/allgroups/`
+        `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/allgroups/`
       );
       const globalGroups = await gres.json();
       setGlobalGroups(globalGroups);

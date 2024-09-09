@@ -37,7 +37,7 @@ export default function Home() {
       gender: localStorage.getItem("gender"),
     };
     await fetch(
-      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/message/",
+      "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",
       {
         method: "POST",
         headers: myHeaders,
@@ -80,7 +80,7 @@ export default function Home() {
       (async () => {
         try {
           const data = await fetch(
-            "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/all/"
+            "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/all/"
           );
           const res = await data.json();
           setState(res);

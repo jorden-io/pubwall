@@ -154,11 +154,20 @@ export default function Home() {
             flexDirection: "column",
           }}
         >
-          <div style={{display: "flex", justifyContent: "center"}}>
-          <hr style={{borderRadius: "100px", marginBottom: "5px", width: "95%", border: "solid 1px rgb(60 60 60)"}}></hr>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <hr
+              style={{
+                borderRadius: "100px",
+                marginBottom: "5px",
+                width: "95%",
+                border: "solid 1px rgb(60 60 60)",
+              }}
+            ></hr>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: "100px" }}>
-            <p style={{fontWeight: "100"}}>chat</p>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "100px" }}
+          >
+            <p style={{ fontWeight: "100" }}>chat</p>
             <span
               style={{
                 borderRadius: "100px",
@@ -167,7 +176,7 @@ export default function Home() {
                 padding: "1px",
               }}
             ></span>
-            <p style={{fontWeight: "100"}}>info</p>
+            <p style={{ fontWeight: "100" }}>info</p>
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", width: "100%" }}

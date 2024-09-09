@@ -22,16 +22,22 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   const fetchMessages = async () => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };
     const res = await fetch(
-      `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
+      `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
     );
     const pm = await res.json();
     setPms(pm);
   };
   const subPMessage = async (message: string) => {
-    const body = { pcmid: pcmid, suid: id, ruid: suid, message: message, token: localStorage.getItem("token") };
+    const body = {
+      pcmid: pcmid,
+      suid: id,
+      ruid: suid,
+      message: message,
+      token: localStorage.getItem("token"),
+    };
     await fetch(
-      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/sendpm",
+      "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/sendpm",
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
     );
     fetchMessages().then(() => {
@@ -61,7 +67,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };
     (async () => {
       const res = await fetch(
-        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
+        `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/pmessages/`,
         { method: "POST", body: JSON.stringify(body), headers: myHeaders }
       );
       const pm = await res.json();
@@ -191,64 +197,75 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
               width: "100%",
             }}
           >
-
-
-          <div style={{display: "flex", justifyContent: "center"}}>
-          <hr style={{borderRadius: "100px", marginBottom: "5px", width: "95%", border: "solid 1px rgb(60 60 60)"}}></hr>
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: "100px" }}>
-            <p style={{fontWeight: "100"}}>chat</p>
-            <span
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <hr
+                style={{
+                  borderRadius: "100px",
+                  marginBottom: "5px",
+                  width: "95%",
+                  border: "solid 1px rgb(60 60 60)",
+                }}
+              ></hr>
+            </div>
+            <div
               style={{
-                borderRadius: "100px",
-                height: "20px",
-                backgroundColor: "rgb(60 60 60)",
-                padding: "1px",
-              }}
-            ></span>
-            <p style={{fontWeight: "100"}}>info</p>
-          </div>
-<div style={{display: "flex", justifyContent: "center"}}>
-
-            <input
-              id="minput"
-              placeholder="input . . ."
-              style={{
-                color: "white",
-                fontSize: "16px",
-                width: "100%",
-                padding: "20px",
-                border: "none",
-                backgroundColor: "rgb(40 40 40)",
-                borderRadius: "5px",
-                margin: "10px",
-              }}
-              onClick={(e) => e.preventDefault()}
-              onChange={(e) => setMessage(e.target.value)}
-            ></input>
-            <button
-              style={{
-                color: "white",
-                width: "20%",
-                padding: "20px",
-                border: "none",
-                borderRadius: "5px",
-                backgroundColor: "lightseagreen",
-                fontSize: "16px",
-                margin: "10px",
-              }}
-              onClick={() => {
-                setMessage("");
-                (document.getElementById("minput") as HTMLInputElement).value =
-                  "";
-                if (message.length > 1) {
-                  subPMessage(message);
-                }
+                display: "flex",
+                justifyContent: "center",
+                gap: "100px",
               }}
             >
-              send
-            </button>
-</div>
+              <p style={{ fontWeight: "100" }}>chat</p>
+              <span
+                style={{
+                  borderRadius: "100px",
+                  height: "20px",
+                  backgroundColor: "rgb(60 60 60)",
+                  padding: "1px",
+                }}
+              ></span>
+              <p style={{ fontWeight: "100" }}>info</p>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <input
+                id="minput"
+                placeholder="input . . ."
+                style={{
+                  color: "white",
+                  fontSize: "16px",
+                  width: "100%",
+                  padding: "20px",
+                  border: "none",
+                  backgroundColor: "rgb(40 40 40)",
+                  borderRadius: "5px",
+                  margin: "10px",
+                }}
+                onClick={(e) => e.preventDefault()}
+                onChange={(e) => setMessage(e.target.value)}
+              ></input>
+              <button
+                style={{
+                  color: "white",
+                  width: "20%",
+                  padding: "20px",
+                  border: "none",
+                  borderRadius: "5px",
+                  backgroundColor: "lightseagreen",
+                  fontSize: "16px",
+                  margin: "10px",
+                }}
+                onClick={() => {
+                  setMessage("");
+                  (
+                    document.getElementById("minput") as HTMLInputElement
+                  ).value = "";
+                  if (message.length > 1) {
+                    subPMessage(message);
+                  }
+                }}
+              >
+                send
+              </button>
+            </div>
           </div>
         </div>
         {/* <div>

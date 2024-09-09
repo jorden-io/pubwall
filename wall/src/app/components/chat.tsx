@@ -25,7 +25,7 @@ const Chat: FC<props> = ({ gmessageArray }) => {
     const ruid: number = (decode(localStorage.getItem("token")!)! as token).uid;
     const body = { suid: suid, ruid: ruid };
     await fetch(
-      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createconvo",
+      "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/createconvo",
       { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
     );
   };

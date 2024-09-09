@@ -13,7 +13,7 @@ const CreateGroup: FC = () => {
     myHeaders.append("Content-Type", "application/json");
     const body = { uid: uid, groupname, description: description };
     await fetch(
-      `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/creategroup/`,
+      `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/creategroup/`,
       {
         method: "POST",
         headers: myHeaders,

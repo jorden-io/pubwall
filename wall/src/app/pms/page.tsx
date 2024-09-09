@@ -25,7 +25,7 @@ const Comp = () => {
       myHeaders.append("Content-Type", "application/json");
       const body = { token: localStorage.getItem("token") };
       const res = await fetch(
-        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/myconversations/${id}`,
+        `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/myconversations/${id}`,
         { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
       );
       const convos = await res.json();
@@ -102,9 +102,18 @@ const Comp = () => {
                 erase all
               </button>
             </div>
-            <div style={{ display: "flex", justifyContent: "center"}}>
-
-              <input placeholder="search user . . ." style={{backgroundColor: "rgb(30 30 30)", margin: "10px", borderRadius: "5px", width: "100%", border: "none", padding: "10px"}}></input>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <input
+                placeholder="search user . . ."
+                style={{
+                  backgroundColor: "rgb(30 30 30)",
+                  margin: "10px",
+                  borderRadius: "5px",
+                  width: "100%",
+                  border: "none",
+                  padding: "10px",
+                }}
+              ></input>
             </div>
             {conversations.map((c: any) => (
               <div

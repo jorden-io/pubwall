@@ -14,7 +14,7 @@ const EnterName: FC<props> = () => {
     myHeaders.append("Content-Type", "application/json");
     const body = { name, gender };
     const res = await fetch(
-      "https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/createuser/",
+      "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/createuser/",
       { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
     );
     const user = await res.json();
@@ -55,7 +55,6 @@ const EnterName: FC<props> = () => {
         <span style={{ color: "cyan" }}>Frog</span>{" "}
         <span style={{ color: "cyan" }}>Chats</span>{" "}
         <span style={{ color: "grey" }}>.com</span> */}
-
         <span style={{ color: "cyan" }}>Frog</span>{" "}
         <span style={{ color: "cyan" }}>Chats</span>{" "}
         <span style={{ color: "grey" }}>.com</span>

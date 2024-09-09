@@ -40,7 +40,7 @@ export default function RootLayout({
             myHeaders.append("Content-Type", "application/json");
             const body = { token: localStorage.getItem("token") };
             const res = await fetch(
-              `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/userinfo/${
+              `https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/userinfo/${
                 (decode(t) as token).uid
               }`,
               { method: "POST", headers: myHeaders, body: JSON.stringify(body) }
@@ -55,7 +55,7 @@ export default function RootLayout({
               setAuthenticated(true);
             }
           }
-        } catch (err){
+        } catch (err) {
           setFinished(true);
           setAuthenticated(false);
         }

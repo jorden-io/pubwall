@@ -24,7 +24,7 @@ export default function Comp() {
     useEffect(() => {
       (async () => {
         const res = await fetch(
-          `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupmembers/${groupnumber}`
+          `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/groupmembers/${groupnumber}`
         );
         const gms = await res.json();
         setGroupMembers(gms);
@@ -190,7 +190,7 @@ export default function Comp() {
                   fontSize: "20px",
                   // backgroundColor: "lightseagreen",
                   backgroundColor: "lightseagreen",
-                  border : "none"
+                  border: "none",
                   // backgroundColor: "#2bb41e",
                 }}
               >
@@ -230,12 +230,12 @@ export default function Comp() {
     }
     (async () => {
       // const res = await fetch(
-      //   `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/groupinfo/${t}`
+      //   `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/groupinfo/${t}`
       // );
       // const groupInfo = await res.json();
       // setGroups(groupInfo);
       const gres = await fetch(
-        `https://fr48rz56nh.execute-api.us-east-2.amazonaws.com/api/allgroups/`
+        `https://jktecbt034.execute-api.us-east-2.amazonaws.com//api/allgroups/`
       );
       const globalGroups = await gres.json();
       setGlobalGroups(globalGroups);
@@ -268,24 +268,24 @@ export default function Comp() {
           description={gdescription}
         />
         <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ margin: "5px", width: "1000px" }}>
-          <button
-            onClick={() => {
-              setInGroup(false);
-              setShowInfo(true);
-            }}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "none",
-              color: "white",
-              backgroundColor: "lightseagreen",
-              borderRadius: "5px",
-            }}
-          >
-            view group info
-          </button>
-        </div>
+          <div style={{ margin: "5px", width: "1000px" }}>
+            <button
+              onClick={() => {
+                setInGroup(false);
+                setShowInfo(true);
+              }}
+              style={{
+                width: "100%",
+                padding: "10px",
+                border: "none",
+                color: "white",
+                backgroundColor: "lightseagreen",
+                borderRadius: "5px",
+              }}
+            >
+              view group info
+            </button>
+          </div>
         </div>
       </>
     );
@@ -337,7 +337,8 @@ export default function Comp() {
             <div
               style={{
                 // backgroundColor: "rgb(40 40 40)",
-                    background: "linear-gradient(0.50turn, rgb(20 20 20) , rgb(5 5 5), rgb( 20 20 20) )",
+                background:
+                  "linear-gradient(0.50turn, rgb(20 20 20) , rgb(5 5 5), rgb( 20 20 20) )",
                 height: "400px",
                 overflowY: "scroll",
                 width: "100%",

@@ -10,6 +10,7 @@ interface GMessage {
   gender: string;
   gmessage: string;
   time: string;
+  url: string;
 }
 interface props {
   gmessageArray: Array<GMessage>;
@@ -128,6 +129,7 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                   {e!.gmessage!}
                 </span>
               </span>
+              <img width={300} src={e!.url}/>
             </div>
           </div>
         ))}

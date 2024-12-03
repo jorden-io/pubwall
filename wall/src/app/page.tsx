@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EnterName from "./components/name";
 import Head from "next/head";
 import ButtonOptions from "./components/buttonsOptions";
@@ -7,12 +7,16 @@ import Nav from "./components/nav";
 import GlobalChat from "./components/globalChat";
 import Loading from "./components/loading";
 import { decode } from "jsonwebtoken";
+import { PutBlobResult } from "@vercel/blob";
+import { upload } from "@vercel/blob/client";
 
 let time = 0;
 let currentlyRunning = false;
 let threeTries = 0;
 let t = 0;
 export default function Home() {
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const [state, setState] = useState([]);
@@ -35,6 +39,7 @@ export default function Home() {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
+      url: blob?.url ? blob!.url : "",
     };
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",
@@ -197,6 +202,33 @@ export default function Home() {
               onClick={(e) => e.preventDefault()}
               onChange={(e) => setMessage(e.target.value)}
             ></input>
+      <div>
+
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+ 
+          if (!inputFileRef.current?.files) {
+            throw new Error('No file selected');
+          }
+ 
+          const file = inputFileRef.current.files[0];
+ 
+          const newBlob = await upload(file.name, file, {
+            access: 'public',
+            handleUploadUrl: '/api/avatar/upload',
+          });
+ 
+          setBlob(newBlob);
+          if (message.length > 1) {
+            subMessage(message);
+          }
+        }}
+      >
+        <input name="file" ref={inputFileRef} type="file" required />
+        <button type="submit">Upload</button>
+      </form>
+      </div>
             <button
               style={{
                 color: "white",

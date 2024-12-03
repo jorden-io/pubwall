@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/blob": "^0.26.0",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^8.5.1",
     "next": "^14.2.3",

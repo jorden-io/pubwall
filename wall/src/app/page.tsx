@@ -218,7 +218,7 @@ export default function Home() {
               onChange={(e) => setMessage(e.target.value)}
             ></input>
             {/* <div> */}
-                <input id={"upload"} name="file" ref={inputFileRef} type="file" required hidden />
+                <input id={"upload"} name="file" ref={inputFileRef} type="file" required />
                 <label htmlFor={"upload"} style={{padding: "20px", margin: "10px", borderRadius: "5px", background: "grey"}}>upload</label>
             {/* </div> */}
             <button

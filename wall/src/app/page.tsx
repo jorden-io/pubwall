@@ -19,7 +19,7 @@ export default function Home() {
   myHeaders.append("Content-Type", "application/json");
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  const [url, setUrl] = useState<string>("");
+  //const [url, setUrl] = useState<string>("");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -34,9 +34,8 @@ export default function Home() {
       console.log(err);
     }
   };
-  const subMessage = async (data: string) => {
+  const subMessage = async (data: string, url: string) => {
     threeTries = 0;
-    setUrl(blob!.url);
     const body = {
       data,
       name: localStorage.getItem("name"),
@@ -221,8 +220,7 @@ export default function Home() {
             handleUploadUrl: '/api/avatar/upload',
           });
             setBlob(newBlob);
-            console.log(newBlob);
-            //subMessage(message);
+            subMessage(message, newBlob.url);
           //if (message.length > 1) {
           //}
         }}
@@ -247,7 +245,7 @@ export default function Home() {
                 (document.getElementById("minput") as HTMLInputElement).value =
                   "";
                 if (message.length > 1) {
-                  subMessage(message);
+                  subMessage(message, "");
                 }
               }}
             >

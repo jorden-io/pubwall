@@ -35,11 +35,10 @@ export default function Home() {
     }
   };
   const subMessage = async (data: string, url: string) => {
-    try {
-      if (!inputFileRef.current?.files) {
-        throw new Error("No file selected");
-      }
-      const file = inputFileRef.current.files[0];
+      // if (!inputFileRef.current?.files) {
+      //   throw new Error("No file selected");
+      // }
+      const file = inputFileRef!.current!.files![0];
       if(file){
 
       const newBlob = await upload(file.name, file, {
@@ -48,7 +47,8 @@ export default function Home() {
       });
       setBlob(newBlob);
       }
-    } catch {}
+      console.log(blob);
+      console.log(url);
     threeTries = 0;
     const body = {
       data,
@@ -219,7 +219,7 @@ export default function Home() {
             ></input>
             {/* <div> */}
                 <input id={"upload"} name="file" ref={inputFileRef} type="file" required hidden />
-                <label  htmlFor={"upload"} style={{padding: "20px", margin: "10px", borderRadius: "5px", background: "grey"}}>upload</label>
+                <label htmlFor={"upload"} style={{padding: "20px", margin: "10px", borderRadius: "5px", background: "grey"}}>upload</label>
             {/* </div> */}
             <button
               style={{
@@ -236,9 +236,9 @@ export default function Home() {
                 setMessage("");
                 (document.getElementById("minput") as HTMLInputElement).value =
                   "";
-                if (message.length > 1) {
+                //if (message.length > 1) {
                   subMessage(message, "");
-                }
+                //}
               }}
             >
               send

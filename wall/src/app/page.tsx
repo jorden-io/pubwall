@@ -54,7 +54,7 @@ export default function Home() {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
-      url: url,
+      url: blob?.url,
     };
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",
@@ -237,7 +237,7 @@ export default function Home() {
                 (document.getElementById("minput") as HTMLInputElement).value =
                   "";
                 //if (message.length > 1) {
-                  subMessage(message, blob!.url);
+                  subMessage(message, "");
                 //}
               }}
             >

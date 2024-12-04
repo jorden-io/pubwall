@@ -218,7 +218,7 @@ export default function Home() {
               onChange={(e) => setMessage(e.target.value)}
             ></input>
             {/* <div> */}
-                <input id={"upload"} name="file" ref={inputFileRef} type="file" required />
+                <input id={"upload"} name="file" ref={inputFileRef} type="file" required hidden />
                 <label htmlFor={"upload"} style={{padding: "20px", margin: "10px", borderRadius: "5px", background: "grey"}}>upload</label>
             {/* </div> */}
             <button
@@ -237,7 +237,7 @@ export default function Home() {
                 (document.getElementById("minput") as HTMLInputElement).value =
                   "";
                 //if (message.length > 1) {
-                  subMessage(message, "");
+                  subMessage(message, blob!.url);
                 //}
               }}
             >

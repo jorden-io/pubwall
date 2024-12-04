@@ -15,10 +15,11 @@ let currentlyRunning = false;
 let threeTries = 0;
 let t = 0;
 export default function Home() {
-  const inputFileRef = useRef<HTMLInputElement>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [blob, setBlob] = useState<PutBlobResult | null>(null);
+  const [url, setUrl] = useState<string>("");
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>("");
@@ -35,12 +36,12 @@ export default function Home() {
   };
   const subMessage = async (data: string) => {
     threeTries = 0;
-    const url = blob?.url;
+    setUrl(blob!.url);
     const body = {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
-      url: "url"
+      url: url,
     }; 
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",

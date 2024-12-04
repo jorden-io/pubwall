@@ -221,7 +221,8 @@ export default function Home() {
             handleUploadUrl: '/api/avatar/upload',
           });
             setBlob(newBlob);
-            subMessage(message);
+            console.log(newBlob);
+            //subMessage(message);
           //if (message.length > 1) {
           //}
         }}

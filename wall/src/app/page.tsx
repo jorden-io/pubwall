@@ -39,14 +39,11 @@ export default function Home() {
       //   throw new Error("No file selected");
       // }
       const file = inputFileRef!.current!.files![0];
-      if(file){
-
       const newBlob = await upload(file.name, file, {
         access: "public",
         handleUploadUrl: "/api/avatar/upload",
       });
       setBlob(newBlob);
-      }
       console.log(blob);
       console.log(url);
     threeTries = 0;
@@ -54,7 +51,7 @@ export default function Home() {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
-      url: blob?.url,
+      url: newBlob.url,
     };
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",

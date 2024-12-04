@@ -95,7 +95,7 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                 {e!.time[9]}) */}
                 <span style={{ fontWeight: "200" }}> {e!.data!}</span>
               </span>
-              <img width={300} src={e?.url}/>
+              {e.url ? <img width={300} src={e?.url}/> :  ""}
             </div>
             {/* <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr> */}
           </div>

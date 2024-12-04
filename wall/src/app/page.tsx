@@ -39,6 +39,7 @@ export default function Home() {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
+      url: blob?.url
     }; 
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",

@@ -219,12 +219,8 @@ export default function Home() {
             access: 'public',
             handleUploadUrl: '/api/avatar/upload',
           });
-          new Promise((res, rej) => {
             setBlob(newBlob);
-            res(true);
-          }).then(() => {
             subMessage(message);
-          });
           //if (message.length > 1) {
           //}
         }}

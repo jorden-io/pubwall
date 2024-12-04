@@ -12,7 +12,7 @@ const ButtonOptions: FC<props> = () => {
     >
 
       <BsThreeDots
-      style={{color: "cyan", fontSize: "30px"}}
+      style={{color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!, fontSize: "30px"}}
         onClick={() => {
           evenOdd += 1;
           document.getElementById("boptions")!.style.height = (evenOdd % 2 === 0) ? "100px" : "0px";
@@ -34,7 +34,7 @@ const ButtonOptions: FC<props> = () => {
                 width: "100%",
                 padding: "15px",
                 border: "none",
-                backgroundColor: "lightseagreen",
+                backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                 color: "white",
               }}
             >
@@ -46,7 +46,7 @@ const ButtonOptions: FC<props> = () => {
                 borderRadius: "5px",
                 width: "100%",
                 border: "none",
-                backgroundColor: "lightseagreen",
+                backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                 color: "white",
               }}
             >

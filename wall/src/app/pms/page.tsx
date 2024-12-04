@@ -78,7 +78,7 @@ const Comp = () => {
                   marginLeft: "5px",
                   padding: "10px",
                   // backgroundColor: "rgb( 30 30 30)",
-                  backgroundColor: "lightseagreen",
+                  backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                   border: "none",
                   borderRadius: "5px",
                   color: "whitesmoke",
@@ -93,7 +93,7 @@ const Comp = () => {
                   marginRight: "5px",
                   padding: "10px",
                   // backgroundColor: "rgb(30 30 30)",
-                  backgroundColor: "lightseagreen",
+                  backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                   border: "none",
                   borderRadius: "5px",
                   color: "whitesmoke",
@@ -138,7 +138,7 @@ const Comp = () => {
                     <FaTrash
                       style={{
                         marginLeft: "20px",
-                        color: "lightseagreen",
+                        color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                         position: "relative",
                         float: "right",
                       }}

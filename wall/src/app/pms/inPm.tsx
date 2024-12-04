@@ -249,7 +249,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                   padding: "20px",
                   border: "none",
                   borderRadius: "5px",
-                  backgroundColor: "lightseagreen",
+                  backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                   fontSize: "16px",
                   margin: "10px",
                 }}

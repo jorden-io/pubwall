@@ -31,7 +31,7 @@ const Nav: FC<props> = ({ title }) => {
       </h1>
       <Link href={"/"}>
         <FaEarthAmericas
-          style={{ fontSize: "25px", margin: "20px", color: "lightseagreen" }}
+          style={{ fontSize: "25px", margin: "20px", color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")! }}
         />
       </Link>
     </div>

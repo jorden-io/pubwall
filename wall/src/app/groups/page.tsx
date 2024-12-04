@@ -81,7 +81,7 @@ export default function Comp() {
               <p style={{ textAlign: "center", fontWeight: "100" }}>
                 {" "}
                 creator-
-                <span style={{ fontWeight: "400", color: "lightseagreen" }}>
+                <span style={{ fontWeight: "400", color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")! }}>
                   {creator}
                 </span>
               </p>
@@ -189,7 +189,7 @@ export default function Comp() {
                   color: "white",
                   fontSize: "20px",
                   // backgroundColor: "lightseagreen",
-                  backgroundColor: "lightseagreen",
+                  backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                   border: "none",
                   // backgroundColor: "#2bb41e",
                 }}
@@ -279,7 +279,7 @@ export default function Comp() {
                 padding: "10px",
                 border: "none",
                 color: "white",
-                backgroundColor: "lightseagreen",
+                backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                 borderRadius: "5px",
               }}
             >
@@ -403,7 +403,7 @@ export default function Comp() {
                       width: "50%",
                       padding: "10px",
                       // backgroundColor: "grey",
-                      backgroundColor: "lightseagreen",
+                      backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                       fontWeight: "100",
                       fontSize: "16px",
                       color: "white",

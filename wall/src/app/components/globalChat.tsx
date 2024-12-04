@@ -45,7 +45,7 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                 display: "flex",
                 padding: "10px",
                 fontWeight: "150",
-                boxShadow: "0px 0px 6px black",
+                //boxShadow: "0px 0px 6px black",
                 // border: "solid 1px grey",
                 borderRadius: localStorage.getItem("name") == e.name ? "25px 25px 0px 25px ": " 25px 25px 25px 0px",
                 backgroundColor: "rgb(30 30 30)",

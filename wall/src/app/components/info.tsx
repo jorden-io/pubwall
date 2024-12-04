@@ -27,11 +27,13 @@ const Info: FC<props> = () => {
           }}
         >
           <div style={{ display: "flex", justifyContent: "center", margin: "8px" }}>
+
             <IoClose
               style={{
-                color: "cyan",
+                color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                 border: "none",
-                boxShadow: "0px 0px 6px black",
+                //boxShadow: "0px 0px 6px black",
+                padding: "5px",
                 backgroundColor: "rgb( 30 30 30)",
                 width: "85%",
                 borderRadius: "5px",
@@ -43,9 +45,13 @@ const Info: FC<props> = () => {
                 document.getElementById("info")!.style.display = "none";
               }}
             />
+
           </div>
           <div style={{display: "flex", justifyContent: "center"}}>
-          <hr style={{ border: "solid 1px grey", borderRadius: "100px", width: "85%" }}></hr>
+            <h2 style={{fontWeight: "400", margin: "10px", color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}}> <a href="/color">change color</a> </h2>
+          </div>
+          <div style={{display: "flex", justifyContent: "center"}}>
+          <hr style={{ border: "solid 1px rgb(30 30 30)", borderRadius: "100px", width: "85%" }}></hr>
           </div>
           <Link
             onClick={() => {

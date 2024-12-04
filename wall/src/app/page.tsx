@@ -35,17 +35,15 @@ export default function Home() {
     }
   };
   const subMessage = async (data: string, url: string) => {
-      // if (!inputFileRef.current?.files) {
-      //   throw new Error("No file selected");
-      // }
-      const file = inputFileRef!.current!.files![0];
-      const newBlob = await upload(file.name, file, {
-        access: "public",
-        handleUploadUrl: "/api/avatar/upload",
-      });
-      setBlob(newBlob);
-      console.log(blob);
-      console.log(url);
+    // if (!inputFileRef.current?.files) {
+    //   throw new Error("No file selected");
+    // }
+    const file = inputFileRef!.current!.files![0];
+    const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
+      access: "public",
+      handleUploadUrl: "/api/avatar/upload",
+    });
+    setBlob(newBlob);
     threeTries = 0;
     const body = {
       data,
@@ -156,7 +154,7 @@ export default function Home() {
           }}
         >
           speaking as-{" "}
-          <span style={{ color: "lightseagreen" }}>
+          <span style={{ color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")! }}>
             {" "}
             {localStorage.getItem("name")}
           </span>
@@ -215,8 +213,25 @@ export default function Home() {
               onChange={(e) => setMessage(e.target.value)}
             ></input>
             {/* <div> */}
-                <input id={"upload"} name="file" ref={inputFileRef} type="file" required hidden />
-                <label htmlFor={"upload"} style={{padding: "20px", margin: "10px", borderRadius: "5px", background: "grey"}}>upload</label>
+            <input
+              id={"upload"}
+              name="file"
+              ref={inputFileRef}
+              type="file"
+              required
+              hidden
+            />
+            <label
+              htmlFor={"upload"}
+              style={{
+                padding: "20px",
+                margin: "10px",
+                borderRadius: "5px",
+                background: "rgb(30 30 30)",
+              }}
+            >
+              upload
+            </label>
             {/* </div> */}
             <button
               style={{
@@ -225,7 +240,7 @@ export default function Home() {
                 padding: "20px",
                 border: "none",
                 borderRadius: "5px",
-                backgroundColor: "lightseagreen",
+                backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
                 fontSize: "16px",
                 margin: "10px",
               }}
@@ -234,7 +249,7 @@ export default function Home() {
                 (document.getElementById("minput") as HTMLInputElement).value =
                   "";
                 //if (message.length > 1) {
-                  subMessage(message, "");
+                subMessage(message, "");
                 //}
               }}
             >

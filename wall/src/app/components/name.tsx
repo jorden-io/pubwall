@@ -153,7 +153,7 @@ const EnterName: FC<props> = () => {
               borderRadius: "5px",
               padding: "10px",
               margin: "5px",
-              backgroundColor: "lightseagreen",
+              backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
               // border: "solid 1px cyan",
               color: "whitesmoke",
               border: "none",

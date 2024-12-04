@@ -91,7 +91,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
         <p>
           {" "}
           <span style={{ fontWeight: "100" }}>{`creator - `}</span>{" "}
-          <span style={{ color: "lightseagreen" }}>{name}</span>
+          <span style={{ color: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")! }}>{name}</span>
         </p>
       </div>
       <Chat gmessageArray={messages} />
@@ -128,7 +128,7 @@ const InGroup: FC<props> = ({ description, gid, groupname, name }) => {
             padding: "20px",
             border: "none",
             borderRadius: "5px",
-            backgroundColor: "lightseagreen",
+            backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
             // backgroundColor: "#2bb41e",
             fontSize: "16px",
             margin: "10px",

@@ -39,8 +39,7 @@ export default function Home() {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
-      url: blob?.url ? blob!.url : "",
-    };
+    }; 
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",
       {
@@ -218,11 +217,14 @@ export default function Home() {
             access: 'public',
             handleUploadUrl: '/api/avatar/upload',
           });
- 
-          setBlob(newBlob);
-          if (message.length > 1) {
+          new Promise((res, rej) => {
+            setBlob(newBlob);
+            res(true);
+          }).then(() => {
             subMessage(message);
-          }
+          });
+          //if (message.length > 1) {
+          //}
         }}
       >
         <input name="file" ref={inputFileRef} type="file" required />

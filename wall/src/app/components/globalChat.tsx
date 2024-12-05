@@ -33,7 +33,17 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
         }}
       >
         {gmessageArray.map((e: GMessage) => (
-          <div style={{animation: "fadein 0.5s ease-out", display: "flex", justifyContent: localStorage.getItem("name") == e.name ? "flex-end" : "flex-start"} } key={e.mid}>
+          <div
+            style={{
+              animation: "fadein 0.5s ease-out",
+              display: "flex",
+              justifyContent:
+                localStorage.getItem("name") == e.name
+                  ? "flex-end"
+                  : "flex-start",
+            }}
+            key={e.mid}
+          >
             <div
               onClick={() => {
                 document
@@ -47,7 +57,10 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                 fontWeight: "150",
                 //boxShadow: "0px 0px 6px black",
                 // border: "solid 1px grey",
-                borderRadius: localStorage.getItem("name") == e.name ? "25px 25px 0px 25px ": " 25px 25px 25px 0px",
+                borderRadius:
+                  localStorage.getItem("name") == e.name
+                    ? "25px 25px 0px 25px "
+                    : " 25px 25px 25px 0px",
                 backgroundColor: "rgb(30 30 30)",
                 margin: "10px",
               }}
@@ -80,29 +93,51 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                 }
               >
                 <p>
-                {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
+                  {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
                 </p>
-              <p
+                <p
+                  style={{
+                    fontWeight: "600",
+                    color:
+                      localStorage.getItem("name") == e.name
+                        ? "grey"
+                        : "rgb(200 200 200)",
+                  }}
+                >
+                  {localStorage.getItem("name") == e.name ? "me" : e.name}
+                </p>
+              </div>
+              <hr
                 style={{
-                  fontWeight: "600",
-                  color:
-                    localStorage.getItem("name") == e.name
-                      ? "grey"
-                      : "rgb(200 200 200)",
+                  border: "solid 1px rgb(25 25 25)",
+                  borderRadius: "10px",
+                  marginTop: "10px",
+                }}
+              ></hr>
+              <span
+                style={{
+                  padding: "5px",
+                  fontWeight: "500",
+                  maxWidth: "300px",
+                  textAlign: "center",
+                  width: "250px",
                 }}
               >
-                {localStorage.getItem("name") == e.name ? "me" : e.name}
-              </p>
-              </div>
-              <hr style={{border: "solid 1px rgb(25 25 25)", borderRadius: "10px", marginTop: "10px"}}></hr>
-              <span style={{ padding: "5px", fontWeight: "500", maxWidth: "300px", textAlign: "center"}}>
                 {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]}) */}
                 <span style={{ fontWeight: "200" }}> {e!.data!}</span>
               </span>
-              <div style={{display: "flex", justifyContent: "center"}}>
-              {e.url ? <img style={{borderRadius: "10px"}} width={200} src={e?.url}/> :  ""}
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                {e.url ? (
+                  <img
+                    style={{ borderRadius: "10px" }}
+                    width={200}
+                    src={e?.url}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             {/* <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr> */}

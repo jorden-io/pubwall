@@ -34,7 +34,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   };
   const subPMessage = async (message: string) => {
 let burl = "";
-    const file = inputFileRef!.current!.files![0];
+    let file = inputFileRef?.current?.files![0];
     if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
       access: "public",
@@ -77,6 +77,7 @@ let burl = "";
         }
       }, 3000);
     }
+    file = undefined;
   };
   useEffect(() => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };

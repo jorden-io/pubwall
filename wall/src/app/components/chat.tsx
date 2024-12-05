@@ -129,7 +129,7 @@ const Chat: FC<props> = ({ gmessageArray }) => {
                   {e!.gmessage!}
                 </span>
               </span>
-              <img width={300} src={e!.url}/>
+              {/* <img width={300} src={e!.url}/> */}
             </div>
           </div>
         ))}

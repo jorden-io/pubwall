@@ -78,6 +78,7 @@ let burl = "";
       }, 3000);
     }
     file = undefined;
+    burl = "";
   };
   useEffect(() => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };

@@ -118,7 +118,7 @@ const Comp = () => {
             {conversations.map((c: any) => (
               <div
                 style={{
-                  boxShadow: "0px 0px 4px black",
+                  // boxShadow: "0px 0px 2px black",
                   backgroundColor: "rgb(42 42 42)",
                   margin: "20px",
                   padding: "10px",

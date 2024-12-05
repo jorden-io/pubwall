@@ -1,7 +1,9 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { decode } from "jsonwebtoken";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { PutBlobResult } from "@vercel/blob";
+import { upload } from "@vercel/blob/client";
 interface Props {
   pcmid: number;
   suid: number;
@@ -18,6 +20,8 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   }
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
   const fetchMessages = async () => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };
@@ -29,12 +33,23 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
     setPms(pm);
   };
   const subPMessage = async (message: string) => {
+let burl = "";
+    const file = inputFileRef!.current!.files![0];
+    if(file){
+    const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
+      access: "public",
+      handleUploadUrl: "/api/avatar/upload",
+    });
+    setBlob(newBlob);
+    burl = newBlob.url;
+    };
     const body = {
       pcmid: pcmid,
       suid: id,
       ruid: suid,
       message: message,
       token: localStorage.getItem("token"),
+      url: burl,
     };
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/sendpm",
@@ -121,10 +136,10 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                   }}
                   key={e!.gmid!}
                   style={{
-                    display: "flex",
+                    display: "grid",
                     padding: "10px",
                     fontWeight: "150",
-                    boxShadow: "0px 0px 6px black",
+                    //boxShadow: "0px 0px 6px black",
                     borderRadius:
                       id != e.ruid
                         ? "25px 25px 0px 25px "
@@ -145,6 +160,8 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                             // border: "solid 1px blue",
                             borderRadius: "500px",
                             backgroundColor: "lightblue",
+                        gap: "20px",
+                        display: "flex",
                           }
                         : {
                             margin: "0px",
@@ -154,26 +171,33 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                             padding: "5px",
                             borderRadius: "500px",
                             backgroundColor: "pink",
+                        gap: "20px",
+                        display: "flex",
                           }
                     }
                   >
+                    <p>
                     {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
-                  </div>
+                    </p>
                   <p
-                    // onClick={() => {
-                    //   createConvo(e.uid!);
-                    // }}
                     style={{
                       fontWeight: "600",
-                      padding: "5px",
                       color: id != e.ruid ? "grey" : "rgb(200 200 200)",
                     }}
                   >
-                    {/* {e.suid}{" "} */}
-                    {localStorage.getItem("name") == e.name ? "me" : e.name}
+                    {/* {localStorage.getItem("name") == name ? "me" : name} */}
+                    {id != e.ruid ? "me" : name}
                   </p>
-                  <span style={{ padding: "5px", fontWeight: "600" }}>
-                    {id != e.ruid ? "me" : name}:
+                  </div>
+              <hr
+                style={{
+                  border: "solid 1px rgb(25 25 25)",
+                  borderRadius: "10px",
+                  marginTop: "10px",
+                }}
+              ></hr>
+                  <span style={{ padding: "5px", fontWeight: "600", maxWidth: "300px", textAlign: "center", width: "250px" }}>
+                    {/* {id != e.ruid ? "me" : name}: */}
                     {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]})- */}
@@ -181,6 +205,17 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                       {e!.message!}
                     </span>
                   </span>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                {e.url ? (
+                  <img
+                    style={{ borderRadius: "10px" }}
+                    width={200}
+                    src={e?.url}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
                 </div>
               </div>
             ))}
@@ -242,6 +277,26 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
                 onClick={(e) => e.preventDefault()}
                 onChange={(e) => setMessage(e.target.value)}
               ></input>
+            <input
+              id={"upload"}
+              name="file"
+              ref={inputFileRef}
+              type="file"
+              required
+              hidden
+            />
+            <label
+              htmlFor={"upload"}
+              style={{
+                padding: "20px",
+                margin: "10px",
+                borderRadius: "5px",
+                border: `solid 1px ${(localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}`,
+                background: "rgb(30 30 30)",
+              }}
+            >
+              upload
+            </label>
               <button
                 style={{
                   color: "white",

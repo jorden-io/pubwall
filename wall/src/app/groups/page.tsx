@@ -62,7 +62,7 @@ export default function Comp() {
                   padding: "10px",
                   margin: "10px",
                   backgroundColor: "rgb( 60 60 60)",
-                  boxShadow: "0px 0px 5px black",
+                  // boxShadow: "0px 0px 5px black",
                   color: "white",
                 }}
               >

@@ -80,7 +80,7 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                         display: "flex",
                       }
                     : {
-                        margin: "00px",
+                        margin: "2px",
                         width: "30px",
                         height: "30px",
                         fontSize: "20px",

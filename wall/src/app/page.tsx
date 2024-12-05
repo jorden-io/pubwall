@@ -38,18 +38,22 @@ export default function Home() {
     // if (!inputFileRef.current?.files) {
     //   throw new Error("No file selected");
     // }
+let burl = "";
     const file = inputFileRef!.current!.files![0];
+    if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
       access: "public",
       handleUploadUrl: "/api/avatar/upload",
     });
     setBlob(newBlob);
+    burl = newBlob.url;
+    };
     threeTries = 0;
     const body = {
       data,
       name: localStorage.getItem("name"),
       gender: localStorage.getItem("gender"),
-      url: newBlob.url,
+      url: burl,
     };
     await fetch(
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/message",
@@ -227,6 +231,7 @@ export default function Home() {
                 padding: "20px",
                 margin: "10px",
                 borderRadius: "5px",
+                border: `solid 1px ${(localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}`,
                 background: "rgb(30 30 30)",
               }}
             >

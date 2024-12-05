@@ -42,7 +42,7 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
               }}
               key={e!.mid!}
               style={{
-                display: "flex",
+                display: "grid",
                 padding: "10px",
                 fontWeight: "150",
                 //boxShadow: "0px 0px 6px black",
@@ -63,39 +63,47 @@ const GlobalChat: FC<props> = ({ gmessageArray }) => {
                         padding: "5px",
                         borderRadius: "500px",
                         backgroundColor: "lightblue",
+                        gap: "20px",
+                        display: "flex",
                       }
                     : {
-                        margin: "0px",
+                        margin: "00px",
                         width: "30px",
                         height: "30px",
                         fontSize: "20px",
                         padding: "5px",
                         borderRadius: "500px",
                         backgroundColor: "pink",
+                        gap: "20px",
+                        display: "flex",
                       }
                 }
               >
+                <p>
                 {e.gender == "male" ? <BsGenderMale /> : <BsGenderFemale />}
-              </div>
+                </p>
               <p
                 style={{
                   fontWeight: "600",
-                  padding: "5px",
                   color:
                     localStorage.getItem("name") == e.name
                       ? "grey"
                       : "rgb(200 200 200)",
                 }}
               >
-                {localStorage.getItem("name") == e.name ? "me" : e.name}:
+                {localStorage.getItem("name") == e.name ? "me" : e.name}
               </p>
-              <span style={{ padding: "5px", fontWeight: "500" }}>
+              </div>
+              <hr style={{border: "solid 1px rgb(25 25 25)", borderRadius: "10px", marginTop: "10px"}}></hr>
+              <span style={{ padding: "5px", fontWeight: "500", maxWidth: "300px", textAlign: "center"}}>
                 {/* ({e!.time[5]}
                 {e!.time[6]}/{e!.time[8]}
                 {e!.time[9]}) */}
                 <span style={{ fontWeight: "200" }}> {e!.data!}</span>
               </span>
+              <div style={{display: "flex", justifyContent: "center"}}>
               {e.url ? <img style={{borderRadius: "10px"}} width={200} src={e?.url}/> :  ""}
+              </div>
             </div>
             {/* <hr style={{ border: "solid 1px rgb(80 80 80)" }}></hr> */}
           </div>

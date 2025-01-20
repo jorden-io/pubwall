@@ -17,7 +17,7 @@ let t = 0;
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  const inputFileRef = useRef<HTMLInputElement>(null);
+  let inputFileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<number>();
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   //const [url, setUrl] = useState<string>("");
@@ -66,6 +66,7 @@ export default function Home() {
       }
     );
     setBlob(null);
+    inputFileRef = useRef(null);
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")
@@ -94,20 +95,20 @@ export default function Home() {
     uid: number;
   }
   useEffect(() => {
-    (async() => {
-      let file;
-    if(inputFileRef.current){
-      file = inputFileRef!.current!.files![0];
-    }
-    if(file){
-    const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
-      access: "public",
-      handleUploadUrl: "/api/avatar/upload",
-    });
-    setBlob(newBlob);
-    }
-    console.log(inputFileRef!.current!.files)
-    })();
+    // (async() => {
+    //   let file;
+    // if(inputFileRef.current){
+    //   file = inputFileRef!.current!.files![0];
+    // }
+    // if(file){
+    // const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
+    //   access: "public",
+    //   handleUploadUrl: "/api/avatar/upload",
+    // });
+    // setBlob(newBlob);
+    // }
+    // console.log(inputFileRef!.current!.files)
+    // })();
 
     if (localStorage.getItem("token")) {
       t = (decode(localStorage.getItem("token")!) as token).uid;

@@ -66,7 +66,7 @@ export default function Home() {
       }
     );
     setBlob(null);
-    inputFileRef = null;
+    inputFileRef.current.value = "";
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")

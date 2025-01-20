@@ -255,7 +255,7 @@ export default function Home() {
                 borderRadius: "5px",
                 border: `solid 1px ${(localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}`,
                 color: file ? "black" : "white",
-                background: file ? "rgb(30 30 30)" : "white",
+                background: file ? "white" : "rgb(30 30 30)",
               }}
             >
               upload

@@ -17,7 +17,7 @@ let t = 0;
 export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  let inputFileRef = useRef<HTMLInputElement>(null);
+  let inputFileRef: any = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<number>();
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   //const [url, setUrl] = useState<string>("");
@@ -66,7 +66,7 @@ export default function Home() {
       }
     );
     setBlob(null);
-    inputFileRef = useRef(null);
+    inputFileRef = null;
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")

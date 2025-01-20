@@ -7,9 +7,8 @@ import Nav from "./components/nav";
 import GlobalChat from "./components/globalChat";
 import Loading from "./components/loading";
 import { decode } from "jsonwebtoken";
-import { BlobNotFoundError, PutBlobResult } from "@vercel/blob";
+import { PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
-import { IoBowlingBallOutline } from "react-icons/io5";
 
 let time = 0;
 let currentlyRunning = false;
@@ -40,7 +39,7 @@ export default function Home() {
     // if (!inputFileRef.current?.files) {
     //   throw new Error("No file selected");
     // }
-let burl = "";
+    let burl = "";
     let file: File | undefined = inputFileRef!.current!.files![0];
     if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
@@ -65,6 +64,9 @@ let burl = "";
         body: JSON.stringify(body),
       }
     );
+    setBlob(null);
+    burl = "";
+    file = undefined;
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")
@@ -87,15 +89,12 @@ let burl = "";
         }
       }, 3000);
     }
-    setBlob(null);
-    file = undefined;
   };
 
   interface token {
     uid: number;
   }
   useEffect(() => {
-
     (async() => {
       let file;
     if(inputFileRef.current){

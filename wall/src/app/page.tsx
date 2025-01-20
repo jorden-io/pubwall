@@ -235,7 +235,6 @@ export default function Home() {
               onClick={(e) => e.preventDefault()}
               onChange={(e) => setMessage(e.target.value)}
             ></input>
-            <img style={{width: "100px", display: blob?.url ? "" : "none"}} src={blob?.url ? blob.url : ""}/>
             {/* <div> */}
             <input
             onChange={(() => {

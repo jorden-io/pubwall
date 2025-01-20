@@ -19,6 +19,7 @@ export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<number>();
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   //const [url, setUrl] = useState<string>("");
   const [state, setState] = useState([]);
@@ -40,7 +41,7 @@ export default function Home() {
     //   throw new Error("No file selected");
     // }
 let burl = "";
-    const file = inputFileRef!.current!.files![0];
+    let file: File | undefined = inputFileRef!.current!.files![0];
     if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
       access: "public",
@@ -86,12 +87,29 @@ let burl = "";
         }
       }, 3000);
     }
+    setBlob(null);
+    file = undefined;
   };
 
   interface token {
     uid: number;
   }
   useEffect(() => {
+
+    (async() => {
+      let file;
+    if(inputFileRef.current){
+      file = inputFileRef!.current!.files![0];
+    }
+    if(file){
+    const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
+      access: "public",
+      handleUploadUrl: "/api/avatar/upload",
+    });
+    setBlob(newBlob);
+    }
+    })();
+
     if (localStorage.getItem("token")) {
       t = (decode(localStorage.getItem("token")!) as token).uid;
     }
@@ -125,7 +143,7 @@ let burl = "";
         }
       }
     }, 10000);
-  }, []);
+  }, [file]);
   if (loading) {
     return <Loading />;
   }
@@ -220,11 +238,13 @@ let burl = "";
             <img style={{width: "100px", display: blob?.url ? "" : "none"}} src={blob?.url ? blob.url : ""}/>
             {/* <div> */}
             <input
+            onChange={(() => {
+              setFile(1)
+            })}
               id={"upload"}
               name="file"
               ref={inputFileRef}
               type="file"
-              required
               hidden
             />
             <label

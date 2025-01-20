@@ -18,7 +18,7 @@ export default function Home() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   let inputFileRef: any = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<number>();
+  const [file, setFile] = useState<number | null>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   //const [url, setUrl] = useState<string>("");
   const [state, setState] = useState([]);
@@ -66,6 +66,7 @@ export default function Home() {
       }
     );
     setBlob(null);
+    setFile(null);
     inputFileRef.current.value = "";
     fetchMessags().then(() => {
       document
@@ -107,7 +108,6 @@ export default function Home() {
     // });
     // setBlob(newBlob);
     // }
-    // console.log(inputFileRef!.current!.files)
     // })();
 
     if (localStorage.getItem("token")) {
@@ -143,7 +143,7 @@ export default function Home() {
         }
       }
     }, 10000);
-  }, [file]);
+  }, []);
   if (loading) {
     return <Loading />;
   }
@@ -254,7 +254,8 @@ export default function Home() {
                 margin: "10px",
                 borderRadius: "5px",
                 border: `solid 1px ${(localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}`,
-                background: "rgb(30 30 30)",
+                color: file ? "black" : "white",
+                background: file ? "rgb(30 30 30)" : "white",
               }}
             >
               upload

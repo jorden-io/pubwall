@@ -65,6 +65,7 @@ export default function Home() {
         body: JSON.stringify(body),
       }
     );
+    setBlob(null);
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")

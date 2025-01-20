@@ -40,6 +40,7 @@ export default function Home() {
     //   throw new Error("No file selected");
     // }
     let burl = "";
+    setBlob(null);
     let file: File | undefined = inputFileRef!.current!.files![0];
     if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
@@ -64,9 +65,6 @@ export default function Home() {
         body: JSON.stringify(body),
       }
     );
-    setBlob(null);
-    burl = "";
-    file = undefined;
     fetchMessags().then(() => {
       document
         .getElementById("hiddenp")

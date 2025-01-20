@@ -19,7 +19,7 @@ const Loading: FC = () => {
           loading . . .
         </h1>
         <div style={{display: "flex", justifyContent: "center"}}>
-        <img style={{width: "200px", marginTop: "350px"}} src={frog.src}/>
+        <img style={{width: "300px", marginTop: "150px"}} src={frog.src}/>
         </div>
       </div>
     </div>

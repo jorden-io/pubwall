@@ -173,7 +173,7 @@ const EnterName: FC<props> = () => {
         </div>
       </div>
       <div style={{display: "flex", justifyContent: "center"}}>
-        <img style={{width: "300px"}} src={frog.src}/>
+        <img style={{width: "200px"}} src={frog.src}/>
       </div>
     </div>
   );

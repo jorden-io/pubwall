@@ -14,6 +14,7 @@ let currentlyRunning = false;
 let threeTries = 0;
 const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   const [pms, setPms] = useState([]);
+  const [file, setFile] = useState<number | null>(null);
   const [message, setMessage] = useState("");
   interface token {
     uid: number;
@@ -57,6 +58,7 @@ let burl = "";
     );
     file = undefined;
     setBlob(null);
+    setFile(null);
     inputFileRef.current.value = "";
     burl = "";
     fetchMessages().then(() => {
@@ -282,6 +284,9 @@ let burl = "";
                 onChange={(e) => setMessage(e.target.value)}
               ></input>
             <input
+            onChange={() => {
+              setFile(1);
+            }}
               id={"upload"}
               name="file"
               ref={inputFileRef}
@@ -296,7 +301,8 @@ let burl = "";
                 margin: "10px",
                 borderRadius: "5px",
                 border: `solid 1px ${(localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!}`,
-                background: "rgb(30 30 30)",
+                color: file ? "black" : "white",
+                background: file ? "white" : "rgb(30 30 30)",
               }}
             >
               upload

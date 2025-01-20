@@ -20,7 +20,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   }
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  const inputFileRef = useRef<HTMLInputElement>(null);
+  let inputFileRef: any = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const id: number = (decode(localStorage.getItem("token")!)! as token).uid;
   const fetchMessages = async () => {
@@ -34,7 +34,7 @@ const InPm: FC<Props> = ({ pcmid, suid, name }) => {
   };
   const subPMessage = async (message: string) => {
 let burl = "";
-    let file = inputFileRef?.current?.files![0];
+    let file: File | undefined = inputFileRef?.current?.files![0];
     if(file){
     const newBlob = await upload(file.name ? file.name : "", file ? file : "", {
       access: "public",
@@ -56,6 +56,8 @@ let burl = "";
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
     );
     file = undefined;
+    setBlob(null);
+    inputFileRef.current.value = "";
     burl = "";
     fetchMessages().then(() => {
       document

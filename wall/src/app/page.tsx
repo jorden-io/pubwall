@@ -106,6 +106,7 @@ export default function Home() {
     });
     setBlob(newBlob);
     }
+    console.log(inputFileRef.current)
     })();
 
     if (localStorage.getItem("token")) {

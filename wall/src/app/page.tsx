@@ -7,8 +7,9 @@ import Nav from "./components/nav";
 import GlobalChat from "./components/globalChat";
 import Loading from "./components/loading";
 import { decode } from "jsonwebtoken";
-import { PutBlobResult } from "@vercel/blob";
+import { BlobNotFoundError, PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
+import { IoBowlingBallOutline } from "react-icons/io5";
 
 let time = 0;
 let currentlyRunning = false;
@@ -216,6 +217,7 @@ let burl = "";
               onClick={(e) => e.preventDefault()}
               onChange={(e) => setMessage(e.target.value)}
             ></input>
+            <img style={{width: "100px", display: blob?.url ? "" : "none"}} src={blob?.url ? blob.url : ""}/>
             {/* <div> */}
             <input
               id={"upload"}

@@ -55,6 +55,8 @@ let burl = "";
       "https://jktecbt034.execute-api.us-east-2.amazonaws.com/api/sendpm",
       { method: "POST", body: JSON.stringify(body), headers: myHeaders }
     );
+    file = undefined;
+    burl = "";
     fetchMessages().then(() => {
       document
         .getElementById("hiddenp")
@@ -77,8 +79,6 @@ let burl = "";
         }
       }, 3000);
     }
-    file = undefined;
-    burl = "";
   };
   useEffect(() => {
     const body = { suid: suid, ruid: id, token: localStorage.getItem("token") };

@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { sign } from "jsonwebtoken";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import frog from "../public/frog.png"
 interface props {}
 const EnterName: FC<props> = () => {
   const [name, setName] = useState<string>("");
@@ -37,27 +38,9 @@ const EnterName: FC<props> = () => {
         }}
       >
         {" "}
-        {/* <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
-        <span style={{ color: "orange" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span>
-
-        <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
-        <span style={{ color: "orange" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span>
-
-        <span style={{ color: "#2bb41e" }}>Frog</span>{" "}
-        <span style={{ color: "orange" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span> */}
-        {/* <span style={{ color: "cyan" }}>Frog</span>{" "}
-        <span style={{ color: "cyan" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span>
-
-        <span style={{ color: "cyan" }}>Frog</span>{" "}
-        <span style={{ color: "cyan" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span> */}
-        <span style={{ color: "cyan" }}>Frog</span>{" "}
-        <span style={{ color: "cyan" }}>Chats</span>{" "}
-        <span style={{ color: "grey" }}>.com</span>
+        <span style={{ color: "green" }}>Frog</span>{" "}
+        <span style={{ color: "white" }}>Chats</span>{" "}
+        <span style={{ color: "white" }}>.com</span>
       </h1>
       <div
         style={{
@@ -70,18 +53,18 @@ const EnterName: FC<props> = () => {
           style={{
             backgroundColor: "rgb(15 15 15)",
             // border: "solid 2px #2bb41e",
-            boxShadow: "0px 0px 8px black",
+            //boxShadow: "0px 0px 8px black",
             borderRadius: "5px",
-            padding: "30px",
+            padding: "50px",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
-            margin: "20px",
-            width: "500px",
+            margin: "0px",
+            width: "600px",
           }}
         >
           <h1 style={{ textAlign: "center", fontWeight: "100" }}>
-            enter a name
+            enter display name
           </h1>
           <p
             style={{
@@ -92,7 +75,7 @@ const EnterName: FC<props> = () => {
             }}
           >
             {" "}
-            and select a gender
+            and select gender
           </p>
           <div
             style={{
@@ -107,8 +90,9 @@ const EnterName: FC<props> = () => {
               }}
               style={{
                 width: "100%",
-                backgroundColor: "pink",
-                boxShadow: gender == "female" ? "0px 0px 8px pink" : "none",
+                backgroundColor: "#FFB5C0",
+                transition: "0.5s",
+                border: gender == "female" ? "solid 1px white" : "none",
                 borderRadius: "5px",
                 padding: "5px",
                 fontSize: "40px",
@@ -121,9 +105,9 @@ const EnterName: FC<props> = () => {
               }}
               style={{
                 width: "100%",
-                boxShadow: gender == "male" ? "0px 0px 8px lightblue" : "none",
-                backgroundColor: "lightblue",
-                border: "none",
+                backgroundColor: "#87cefa",
+                transition: "0.5s",
+                border: gender == "male" ? "solid 1px white" : "none",
                 borderRadius: "5px",
                 padding: "5px",
                 fontSize: "40px",
@@ -146,16 +130,17 @@ const EnterName: FC<props> = () => {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            placeholder="froggy . . ."
+            placeholder="froggy . . . ?"
           ></input>
           <button
             style={{
               borderRadius: "5px",
-              padding: "10px",
+              padding: "15px",
               margin: "5px",
-              backgroundColor: (localStorage.getItem("color") ? localStorage.getItem("color") : "cyan")!,
-              // border: "solid 1px cyan",
-              color: "whitesmoke",
+              backgroundColor: "grey",
+              color: "white",
+              fontWeight: "500",
+              fontSize: "13px",
               border: "none",
             }}
             onClick={() => {
@@ -169,7 +154,7 @@ const EnterName: FC<props> = () => {
             style={{
               textAlign: "center",
               borderRadius: "0px",
-              color: "grey",
+              color: "white",
               fontWeight: "1000",
             }}
           >
@@ -186,6 +171,9 @@ const EnterName: FC<props> = () => {
             deleted within a week or before if you choose to log out, have fun!{" "}
           </p>
         </div>
+      </div>
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <img style={{width: "300px"}} src={frog.src}/>
       </div>
     </div>
   );
